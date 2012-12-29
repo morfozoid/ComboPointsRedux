@@ -58,6 +58,7 @@ local symbols = {
 	DeathRune = L["Death Rune"],
 	FrostRune = L["Frost Rune"],
 	UnholyRune = L["Unholy Rune"],
+	TouchofKarma = GetSpellInfo(124280),
 }
 local orientations =  {h = L["Horizontal"], v = L["Vertical"],}
 local outlineStyles = {NONE = _G["NONE"], OUTLINE = L["Outline"], THICKOUTLINE = L["Thick Outline"]}
