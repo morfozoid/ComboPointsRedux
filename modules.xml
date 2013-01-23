@@ -49,5 +49,6 @@
 
 <!--Warrior-->
 <Script file="Modules\MeatCleaver.lua"/>
+<Script file="Modules\TasteForBlood.lua"/>
 
 </Ui>
