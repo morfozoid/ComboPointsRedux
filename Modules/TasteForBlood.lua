@@ -18,7 +18,7 @@ local UnitBuff = UnitBuff
 local cpr = LibStub("AceAddon-3.0"):GetAddon("ComboPointsRedux")
 local modName = "Taste for Blood"
 local mod = cpr:NewModule(modName)
-local buff = GetSpellInfo(56638) --56636 on PTR
+local buff = GetSpellInfo(56636)
 
 function mod:OnInitialize()
 	self.abbrev = "TfB"
