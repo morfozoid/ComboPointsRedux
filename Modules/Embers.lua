@@ -2,8 +2,8 @@
 Author: Starinnia
 CPR is a combo points display addon based on Funkydude's BasicComboPoints
 Embers.lua - A module for tracking Burning Embers
-$Date: 2012-12-06 13:38:15 -0600 (Thu, 06 Dec 2012) $
-$Revision: 303 $
+$Date: 2013-03-21 17:38:17 -0500 (Thu, 21 Mar 2013) $
+$Revision: 312 $
 Project Version: @project-version@
 contact: codemaster2010 AT gmail DOT com
 
@@ -45,14 +45,14 @@ local function fractionalFill(point, power, maxPer)
 		point:Hide()
 	elseif power >= maxPer then
 		icon:SetTexCoord(0, 1, 0, 1) --show the uncut image
-		icon:SetHeight(25*db.scale)
+		point:SetHeight(25*db.scale)
 		point:Show()
 	else
 		--set fractional texture coords
 		local texHeight = (power / maxPer) * (25*db.scale)
-		local top = 1 - texHeight / FILE_HEIGHT
+		local top = 1 - (texHeight / FILE_HEIGHT)
 		icon:SetTexCoord(0, 1, top, 1)
-		icon:SetHeight(texHeight)
+		point:SetHeight(texHeight)
 		point:Show()
 	end
 end

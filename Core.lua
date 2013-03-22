@@ -1,12 +1,12 @@
 --[[
 Author: Starinnia
 CPR is a combo points display addon based on Funkydude's BasicComboPoints
-$Date: 2012-12-13 10:30:50 -0600 (Thu, 13 Dec 2012) $
-$Revision: 304 $
+$Date: 2013-03-21 18:10:07 -0500 (Thu, 21 Mar 2013) $
+$Revision: 313 $
 Project Version: @project-version@
 contact: codemaster2010 AT gmail DOT com
 
-Copyright (c) 2007-2012 Michael J. Murray aka Lyte of Lothar(US)
+Copyright (c) 2007-2013 Michael J. Murray aka Lyte of Lothar(US)
 All rights reserved unless otherwise explicitly stated.
 ]]
 
@@ -243,10 +243,10 @@ function ComboPointsRedux:Reset()
 		end
 		
 		local offset = db.spacing*db.scale
-		module.graphics.points[1]:SetPoint("LEFT", module.graphics, "LEFT", 0, 0)
+		module.graphics.points[1]:SetPoint("BOTTOM", g, "BOTTOM", -(40*db.scale), 0)
 		if module.MAX_POINTS > 1 then
 			for i = 2, module.MAX_POINTS do
-				module.graphics.points[i]:SetPoint("LEFT", module.graphics.points[i-1], "RIGHT", offset, 0)
+				module.graphics.points[i]:SetPoint("BOTTOM", g, "BOTTOM", (db.scale*25*(i-1))+offset-(40*db.scale), 0)
 			end
 		end
 		
@@ -412,10 +412,10 @@ function ComboPointsRedux:UpdateSettings(name)
 				end
 			end
 		else
-			module.graphics.points[1]:SetPoint("LEFT", module.graphics, "LEFT", 0, 0)
+			module.graphics.points[1]:SetPoint("BOTTOM", g, "BOTTOM", -(40*db.scale), 0)
 			if module.MAX_POINTS > 1 then
 				for i = 2, module.MAX_POINTS do
-					module.graphics.points[i]:SetPoint("LEFT", module.graphics.points[i-1], "RIGHT", offset, 0)
+					module.graphics.points[i]:SetPoint("BOTTOM", g, "BOTTOM", (db.scale*25*(i-1))+offset-(40*db.scale), 0)
 				end
 			end
 		end
@@ -453,16 +453,43 @@ function ComboPointsRedux:UpdateSettings(name)
 		end
 	end
 	
-	if select(2, UnitClass("player")) == "DRUID" then
+	--Update some class specific show/hide options
+	local CLASS = select(2, UnitClass("player"))
+	
+	if CLASS == "DRUID" then
 		if db.hideOutCat then
 			local form = GetShapeshiftForm(true)
 			
-			if form == 3 then
-				if self.text then self.text:Show() end
-				if self.graphics then self.graphics:Show() end
+			if name == "Combo Points" then
+				if form == 3 then
+					if module.text then module.text:Show() end
+					if module.graphics then module.graphics:Show() end
+				else
+					if module.text then module.text:Hide() end
+					if module.graphics then module.graphics:Hide() end
+				end
+			end
+		end
+	elseif CLASS == "WARLOCK" then
+		local spec = GetSpecialization()
+	
+		if name == "Burning Embers" then
+			if spec == 3 then
+				--3 is destruction
+				if module.text then module.text:Show() end
+				if module.graphics then module.graphics:Show() end
 			else
-				if self.text then self.text:Hide() end
-				if self.graphics then self.graphics:Hide() end
+				if module.text then module.text:Hide() end
+				if module.graphics then module.graphics:Hide() end
+			end
+		elseif name == "Soul Shards" then
+			if spec == 1 then
+				--1 is affliction
+				if module.text then module.text:Show() end
+				if module.graphics then module.graphics:Show() end
+			else
+				if module.text then module.text:Hide() end
+				if module.graphics then module.graphics:Hide() end
 			end
 		end
 	end
@@ -641,10 +668,10 @@ function ComboPointsRedux:MakeGraphicsFrame(moduleName, num)
 			end
 		end
 	else
-		g.points[1]:SetPoint("LEFT", g, "LEFT", 0, 0)
+		g.points[1]:SetPoint("BOTTOM", g, "BOTTOM", -(40*db.scale), 0)
 		if num > 1 then
 			for i = 2, num do
-				g.points[i]:SetPoint("LEFT", g.points[i-1], "RIGHT", offset, 0)
+				g.points[i]:SetPoint("BOTTOM", g, "BOTTOM", (db.scale*25*(i-1))+offset-(40*db.scale), 0)
 			end
 		end
 	end
