@@ -1,7 +1,7 @@
 --[[
 Author: Starinnia
 CPR is a combo points display addon based on Funkydude's BasicComboPoints
-$Date: 2013-03-21 18:10:07 -0500 (Thu, 21 Mar 2013) $
+$Date: 2013-03-21 23:10:07 +0000 (Thu, 21 Mar 2013) $
 $Revision: 313 $
 Project Version: @project-version@
 contact: codemaster2010 AT gmail DOT com
@@ -243,10 +243,10 @@ function ComboPointsRedux:Reset()
 		end
 		
 		local offset = db.spacing*db.scale
-		module.graphics.points[1]:SetPoint("BOTTOM", g, "BOTTOM", -(40*db.scale), 0)
+		module.graphics.points[1]:SetPoint("BOTTOMLEFT", module.graphics, "BOTTOMLEFT", 0, 0)
 		if module.MAX_POINTS > 1 then
 			for i = 2, module.MAX_POINTS do
-				module.graphics.points[i]:SetPoint("BOTTOM", g, "BOTTOM", (db.scale*25*(i-1))+offset-(40*db.scale), 0)
+				module.graphics.points[i]:SetPoint("BOTTOMLEFT", module.graphics, "BOTTOMLEFT", (offset*(i-1))+(25*(i-1)*db.scale), 0)
 			end
 		end
 		
@@ -379,6 +379,7 @@ function ComboPointsRedux:UpdateSettings(name)
 	local db = self.db.profile.modules[name]
 	local module = self:GetModule(name)
 	local num = module.MAX_POINTS
+	local offset = db.spacing*db.scale
 	
 	--graphics
 	if not db.disableGraphics then
@@ -395,15 +396,14 @@ function ComboPointsRedux:UpdateSettings(name)
 		
 		--adjust container scale
 		if db.orientation == "v" then
-			module.graphics:SetHeight(((25 * num) + (5 * (num - 1))) * db.scale)
+			module.graphics:SetHeight(((25 * num) + (db.spacing * (num - 1))) * db.scale)
 			module.graphics:SetWidth(25*db.scale)
 		else
-			module.graphics:SetWidth(((25 * num) + (5 * (num - 1))) * db.scale)
+			module.graphics:SetWidth(((25 * num) + (db.spacing * (num - 1))) * db.scale)
 			module.graphics:SetHeight(25*db.scale)
 		end
 		
 		--adjust for orientation changes (this updates spacing too)
-		local offset = db.spacing*db.scale
 		if db.orientation == "v" then
 			module.graphics.points[1]:SetPoint("BOTTOM", module.graphics, "BOTTOM", 0, 0)
 			if module.MAX_POINTS > 1 then
@@ -412,10 +412,10 @@ function ComboPointsRedux:UpdateSettings(name)
 				end
 			end
 		else
-			module.graphics.points[1]:SetPoint("BOTTOM", g, "BOTTOM", -(40*db.scale), 0)
+			module.graphics.points[1]:SetPoint("BOTTOMLEFT", module.graphics, "BOTTOMLEFT", 0, 0)
 			if module.MAX_POINTS > 1 then
 				for i = 2, module.MAX_POINTS do
-					module.graphics.points[i]:SetPoint("BOTTOM", g, "BOTTOM", (db.scale*25*(i-1))+offset-(40*db.scale), 0)
+					module.graphics.points[i]:SetPoint("BOTTOMLEFT", module.graphics, "BOTTOMLEFT", (offset*(i-1))+(25*(i-1)*db.scale), 0)
 				end
 			end
 		end
@@ -603,15 +603,16 @@ function ComboPointsRedux:MakeGraphicsFrame(moduleName, num)
 	g.moduleType = "graphics"
 	
 	local db = self.db.profile.modules[moduleName]
+	local offset = db.spacing*db.scale
 	g:SetBackdrop(bg)
 	g:SetFrameStrata(db.strata)
 	g:SetClampedToScreen(db.clampedGraphics)
 	
 	if db.orientation == "v" then
-		g:SetHeight(((25 * num) + (5 * (num - 1))) * db.scale)
+		g:SetHeight(((25 * num) + (db.spacing * (num - 1))))
 		g:SetWidth(25*db.scale)
 	else
-		g:SetWidth(((25 * num) + (5 * (num - 1))) * db.scale)
+		g:SetWidth(((25 * num) + (db.spacing * (num - 1))))
 		g:SetHeight(25*db.scale)
 	end
 	
@@ -659,7 +660,6 @@ function ComboPointsRedux:MakeGraphicsFrame(moduleName, num)
 		g:SetMovable(false)
 	end
 	
-	local offset = db.spacing*db.scale
 	if db.orientation == "v" then
 		g.points[1]:SetPoint("BOTTOM", g, "BOTTOM", 0, 0)
 		if num > 1 then
@@ -668,10 +668,10 @@ function ComboPointsRedux:MakeGraphicsFrame(moduleName, num)
 			end
 		end
 	else
-		g.points[1]:SetPoint("BOTTOM", g, "BOTTOM", -(40*db.scale), 0)
+		g.points[1]:SetPoint("BOTTOMLEFT", g, "BOTTOMLEFT", 0, 0)
 		if num > 1 then
 			for i = 2, num do
-				g.points[i]:SetPoint("BOTTOM", g, "BOTTOM", (db.scale*25*(i-1))+offset-(40*db.scale), 0)
+				g.points[i]:SetPoint("BOTTOMLEFT", g, "BOTTOMLEFT", (offset*(i-1))+(25*(i-1)*db.scale), 0)
 			end
 		end
 	end
