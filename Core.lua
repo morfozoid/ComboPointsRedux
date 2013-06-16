@@ -1,8 +1,8 @@
 --[[
 Author: Starinnia
 CPR is a combo points display addon based on Funkydude's BasicComboPoints
-$Date: 2013-03-21 23:10:07 +0000 (Thu, 21 Mar 2013) $
-$Revision: 313 $
+$Date: 2013-03-28 17:17:34 -0500 (Thu, 28 Mar 2013) $
+$Revision: 315 $
 Project Version: @project-version@
 contact: codemaster2010 AT gmail DOT com
 
@@ -74,8 +74,14 @@ ComboPointsRedux:SetDefaultModulePrototype({
 	EnterCombat = function(self)
 		local modName = self:GetName()
 		if ComboPointsRedux.db.profile.modules[modName].hideOOC then
-			if not ComboPointsRedux.db.profile.modules[modName].disableGraphics then self.graphics:Show() end
-			if not ComboPointsRedux.db.profile.modules[modName].disableText then self.text:Show() end
+			if self.OnSpecChange then
+				--if the module has spec specific behavior, invoke that
+				self:OnSpecChange(nil, "player")
+			else
+				--otherwise do default show operation
+				if not ComboPointsRedux.db.profile.modules[modName].disableGraphics then self.graphics:Show() end
+				if not ComboPointsRedux.db.profile.modules[modName].disableText then self.text:Show() end
+			end
 		end
 	end,
 })

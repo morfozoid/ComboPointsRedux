@@ -73,9 +73,11 @@ function mod:OnSpecChange(_, unit)
 	local spec = GetSpecialization()
 	
 	if spec == 1 then
-		--1 is affliction
-		if self.text then self.text:Show() end
-		if self.graphics then self.graphics:Show() end
+		if not ComboPointsRedux.db.profile.modules[modName].hideOOC or InCombatLockdown() then
+			--1 is affliction
+			if self.text then self.text:Show() end
+			if self.graphics then self.graphics:Show() end
+		end
 	else
 		if self.text then self.text:Hide() end
 		if self.graphics then self.graphics:Hide() end
