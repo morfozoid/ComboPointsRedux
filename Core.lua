@@ -365,8 +365,8 @@ function ComboPointsRedux:UpdatePositions(name)
 	if module.text then
 		module.text:ClearAllPoints()
 		
-		local x = db.textX
-		local y = db.textY
+		local x = db.textX or 0
+		local y = db.textY or 0
 		local s = module.text:GetEffectiveScale()
 		module.text:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", x / s, y / s)
 	end
