@@ -101,7 +101,7 @@ function mod:OnSpecChange(_, unit)
 	local spec = GetSpecialization()
 	
 	if spec == 3 then
-		if not cpr.db.profile.modules[modName].hideOOC or InCombatLockdown() then
+		if not cpr.db.profile.modules[modName].hideOOC or UnitAffectingCombat("player") then
 			--3 is destruction
 			if self.text then self.text:Show() end
 			if self.graphics then self.graphics:Show() end
