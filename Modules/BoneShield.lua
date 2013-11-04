@@ -32,14 +32,19 @@ function mod:UNIT_AURA(_, unit)
 	if unit ~= "player" then return end
 	
 	local _, _, _, count = UnitBuff("player", buff)
+    local graphicsCount = count
+    
+    --manually force it to 6 for graphics only
+    if count > 6 then graphicsCount = 6 end
+    
 	if count then
 		if self.graphics then
-			local r, g, b = cpr:GetColorByPoints(modName, count)
-			for i = count, 1, -1 do
+			local r, g, b = cpr:GetColorByPoints(modName, graphicsCount)
+			for i = graphicsCount, 1, -1 do
 				self.graphics.points[i].icon:SetVertexColor(r, g, b)
 				self.graphics.points[i]:Show()
 			end
-			for j = self.MAX_POINTS, count+1, -1 do
+			for j = self.MAX_POINTS, graphicsCount+1, -1 do
 				self.graphics.points[j]:Hide()
 			end
 		end
