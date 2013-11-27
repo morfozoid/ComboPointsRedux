@@ -35,7 +35,7 @@ function mod:UNIT_AURA(_, unit)
     local graphicsCount = count
     
     --manually force it to 6 for graphics only
-    if count > 6 then graphicsCount = 6 end
+    if count and count > 6 then graphicsCount = 6 end
     
 	if count then
 		if self.graphics then
