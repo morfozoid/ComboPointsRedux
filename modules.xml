@@ -38,6 +38,5 @@
 <Script file="Modules\Embers.lua"/>
 
 <!--Warrior-->
-<Script file="Modules\TasteForBlood.lua"/>
 
 </Ui>
