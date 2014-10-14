@@ -6,12 +6,9 @@
 <!--Death Knight-->
 <Script file="Modules\BoneShield.lua"/>
 
-
 <!--Druid-->
 
-
 <!--Hunter-->
-<Script file="Modules\Frenzy.lua"/>
 
 <!--Mage-->
 <Script file="Modules\Arcane.lua"/>
@@ -30,8 +27,6 @@
 <Script file="Modules\Anticipation.lua"/>
 
 <!--Shaman-->
-<Script file="Modules\Maelstrom.lua"/>
-<Script file="Modules\Fulmination.lua"/>
 
 <!--Warlock-->
 <Script file="Modules\SoulShards.lua"/>
