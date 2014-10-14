@@ -5,50 +5,33 @@
 
 <!--Death Knight-->
 <Script file="Modules\BoneShield.lua"/>
-<Script file="Modules\ShadowInfusion.lua"/>
 
 <!--Druid-->
-<Script file="Modules\LunarShower.lua"/>
-<Script file="Modules\Lacerate.lua"/>
-<Script file="Modules\WildMushroom.lua"/>
 
 <!--Hunter-->
-<Script file="Modules\ReadySetAim.lua"/>
-<Script file="Modules\Frenzy.lua"/>
 
 <!--Mage-->
 <Script file="Modules\Arcane.lua"/>
-<Script file="Modules\FingersOfFrost.lua"/>
 
 <!--Monk-->
 <Script file="Modules\Chi.lua"/>
 
 <!--Paladin-->
-<Script file="Modules\SealOfTruth.lua"/>
 <Script file="Modules\HolyPower.lua"/>
 
 <!--Priest-->
-<Script file="Modules\Serendipity.lua"/>
-<Script file="Modules\Evangelism.lua"/>
 <Script file="Modules\ShadowOrbs.lua"/>
-<Script file="Modules\MindSpike.lua"/>
 
 <!--Rogue-->
-<Script file="Modules\Poison.lua"/>
 <Script file="Modules\BanditsGuile.lua"/>
 <Script file="Modules\Anticipation.lua"/>
 
 <!--Shaman-->
-<Script file="Modules\Maelstrom.lua"/>
-<Script file="Modules\TidalWaves.lua"/>
-<Script file="Modules\Fulmination.lua"/>
 
 <!--Warlock-->
 <Script file="Modules\SoulShards.lua"/>
 <Script file="Modules\Embers.lua"/>
 
 <!--Warrior-->
-<Script file="Modules\MeatCleaver.lua"/>
-<Script file="Modules\TasteForBlood.lua"/>
 
 </Ui>
