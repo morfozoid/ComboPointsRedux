@@ -36,6 +36,12 @@ function mod:UNIT_COMBO_POINTS()
 	
 	if points > 0 then
 		if self.graphics then
+			--6.0.2 bug?/feature, there is no zero event between spending CPs
+			--and Anticipation stacks filling CPs
+			--so, hide all the points before showing the appropriate number
+			for i = 1, 5 do
+				self.graphics.points[i]:Hide()
+			end
 			for i = points, 1, -1 do
 				self.graphics.points[i].icon:SetVertexColor(r, g, b)
 				self.graphics.points[i]:Show()
