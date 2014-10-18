@@ -91,7 +91,7 @@ function mod:OnShapeshift()
 	end
 end
 
-function CPFrame:CombatLogEvent(_, _, eventType, _, _, sourceName, _, _, _, destName, _, _, spellID)
+function mod:CombatLogEvent(_, _, eventType, _, _, sourceName, _, _, _, destName, _, _, spellID)
 	if eventType == "SPELL_CAST_SUCCESS" or eventType == "SPELL_AURA_APPLIED" or eventType == "SPELL_AURA_REFRESH" then
 		if GetUnitName("player") == sourceName then
 			local TarCheck = UnitName("target")
@@ -107,16 +107,5 @@ function CPFrame:CombatLogEvent(_, _, eventType, _, _, sourceName, _, _, _, dest
 				oldPoints = 0
 			end
 		end
-	end
-	if CPs[1] and eventType == "UNIT_DIED" and GetUnitName("player") == destName then
-		if self.graphics then
-			for i = 1, self.MAX_POINTS do
-				self.graphics.points[i]:Hide()
-			end
-		end
-		if self.text then
-			self.text:SetNumPoints(points)
-		end
-		oldPoints = 0
 	end
 end
