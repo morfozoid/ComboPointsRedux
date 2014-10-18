@@ -22,7 +22,7 @@ function mod:OnInitialize()
 	self.abbrev = "CP"
 	self.MAX_POINTS = 5
 	self.displayName = COMBAT_TEXT_SHOW_COMBO_POINTS_TEXT
-	self.events = { "UNIT_COMBO_POINTS", }
+	self.events = { "UNIT_COMBO_POINTS", ["COMBAT_LOG_EVENT_UNFILTERED"] = "CombatLogEvent"}
 end
 
 function mod:OnModuleEnable()
@@ -39,7 +39,7 @@ function mod:UNIT_COMBO_POINTS()
 			--6.0.2 bug?/feature, there is no zero event between spending CPs
 			--and Anticipation stacks filling CPs
 			--so, hide all the points before showing the appropriate number
-			for i = 1, 5 do
+			for i = 1, self.MAX_POINTS do
 				self.graphics.points[i]:Hide()
 			end
 			for i = points, 1, -1 do
@@ -88,5 +88,35 @@ function mod:OnShapeshift()
 			if self.text then self.text:Hide() end
 			if self.graphics then self.graphics:Hide() end
 		end
+	end
+end
+
+function CPFrame:CombatLogEvent(_, _, eventType, _, _, sourceName, _, _, _, destName, _, _, spellID)
+	if eventType == "SPELL_CAST_SUCCESS" or eventType == "SPELL_AURA_APPLIED" or eventType == "SPELL_AURA_REFRESH" then
+		if GetUnitName("player") == sourceName then
+			local TarCheck = UnitName("target")
+			if (spellID == 5171 or spellID ==73651 or spellID == 52610 or spellID == 408 or spellID == 2098 or spellID == 152150 or spellID == 26679 or spellID == 1943 or spellID == 22568 or spellID == 1079 or spellID == 121411) and TarCheck == nil then
+				if self.graphics then
+					for i = 1, self.MAX_POINTS do
+						self.graphics.points[i]:Hide()
+					end
+				end
+				if self.text then
+					self.text:SetNumPoints(points)
+				end
+				oldPoints = 0
+			end
+		end
+	end
+	if CPs[1] and eventType == "UNIT_DIED" and GetUnitName("player") == destName then
+		if self.graphics then
+			for i = 1, self.MAX_POINTS do
+				self.graphics.points[i]:Hide()
+			end
+		end
+		if self.text then
+			self.text:SetNumPoints(points)
+		end
+		oldPoints = 0
 	end
 end
