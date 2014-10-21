@@ -577,6 +577,16 @@ if select(2, UnitClass("player")) == "DRUID" then
 	}
 end
 
+opts.args["Combo Points"].args.advancedPointTracking = {
+	type = 'toggle',
+		name = L["Advanced Point Tracking"],
+		desc = L["Use advanced point tracking methods to show Combo Points on the Player instead of the Target."],
+		get = "Get",
+		set = "Set",
+		arg = "advancedPointTracking",
+		order = 3,
+}
+
 --add profile controls
 opts.args.profile = LibStub("AceDBOptions-3.0"):GetOptionsTable(core.db)
 

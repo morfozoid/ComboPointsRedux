@@ -13,6 +13,10 @@ All rights reserved unless otherwise explicitly stated.
 
 local GetComboPoints = GetComboPoints
 local UnitHasVehicleUI = UnitHasVehicleUI
+local UnitPower = UnitPower
+--see this tweet from Lore:
+-- https://twitter.com/CM_Lore/status/524320415053643777
+local UNIT_POWER_COMBO_POINTS = 4
 
 local cpr = LibStub("AceAddon-3.0"):GetAddon("ComboPointsRedux")
 local modName = "Combo Points"
@@ -22,7 +26,7 @@ function mod:OnInitialize()
 	self.abbrev = "CP"
 	self.MAX_POINTS = 5
 	self.displayName = COMBAT_TEXT_SHOW_COMBO_POINTS_TEXT
-	self.events = { "UNIT_COMBO_POINTS", ["COMBAT_LOG_EVENT_UNFILTERED"] = "CombatLogEvent"}
+	self.events = { "UNIT_COMBO_POINTS", ["PLAYER_TARGET_CHANGED"] = "UNIT_COMBO_POINTS"}
 end
 
 function mod:OnModuleEnable()
@@ -31,7 +35,12 @@ end
 
 local oldPoints = 0
 function mod:UNIT_COMBO_POINTS()
-	local points = GetComboPoints(UnitHasVehicleUI("player") and "vehicle" or "player", "target")
+	local points = 0
+	if cpr.db.profile.modules[modName].advancedPointTracking then
+		points = UnitPower("player", UNIT_POWER_COMBO_POINTS)
+	else
+		points = GetComboPoints(UnitHasVehicleUI("player") and "vehicle" or "player", "target")
+	end
 	local r, g, b = cpr:GetColorByPoints(modName, points)
 	
 	if points > 0 then
@@ -87,25 +96,6 @@ function mod:OnShapeshift()
 		else
 			if self.text then self.text:Hide() end
 			if self.graphics then self.graphics:Hide() end
-		end
-	end
-end
-
-function mod:CombatLogEvent(_, _, eventType, _, _, sourceName, _, _, _, destName, _, _, spellID)
-	if eventType == "SPELL_CAST_SUCCESS" or eventType == "SPELL_AURA_APPLIED" or eventType == "SPELL_AURA_REFRESH" then
-		if GetUnitName("player") == sourceName then
-			local TarCheck = UnitName("target")
-			if (spellID == 5171 or spellID ==73651 or spellID == 52610 or spellID == 408 or spellID == 2098 or spellID == 152150 or spellID == 26679 or spellID == 1943 or spellID == 22568 or spellID == 1079 or spellID == 121411) and TarCheck == nil then
-				if self.graphics then
-					for i = 1, self.MAX_POINTS do
-						self.graphics.points[i]:Hide()
-					end
-				end
-				if self.text then
-					self.text:SetNumPoints(points)
-				end
-				oldPoints = 0
-			end
 		end
 	end
 end

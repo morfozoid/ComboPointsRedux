@@ -94,3 +94,5 @@ L["Hide Out of Cat Form"] = true
 L["Hides the displays when you are not in cat form."] = true
 L["Hide Out of Bear Form"] = true
 L["Hides the displays when you are not in bear form."] = true
+L["Advanced Point Tracking"] = true
+L["Use advanced point tracking methods to show Combo Points on the Player instead of the Target."] = true
