@@ -22,7 +22,7 @@ local buff = GetSpellInfo(324)
 
 function mod:OnInitialize()
 	self.abbrev = "F"
-	self.MAX_POINTS = 6
+	self.MAX_POINTS = 5
 	self.displayName = GetSpellInfo(88766)
 	self.events = { "UNIT_AURA" }
 end
@@ -33,7 +33,7 @@ function mod:UNIT_AURA(_, unit)
 	
 	local _, _, _, count = UnitBuff("player", buff)
 	if count and count > 1 then
-		count = count - 1
+		count = math.floor(count / 3)
 		
 		if self.graphics then
 			local r, g, b = cpr:GetColorByPoints(modName, count)
