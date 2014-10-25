@@ -30,7 +30,6 @@
 <Script file="Modules\Anticipation.lua"/>
 
 <!--Shaman-->
-<Script file="Modules\Maelstrom.lua"/>
 <Script file="Modules\Fulmination.lua"/>
 
 <!--Warlock-->
