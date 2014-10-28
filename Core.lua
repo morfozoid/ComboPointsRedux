@@ -11,6 +11,8 @@ All rights reserved unless otherwise explicitly stated.
 ]]
 
 local ComboPointsRedux = LibStub("AceAddon-3.0"):NewAddon("ComboPointsRedux", "AceConsole-3.0")
+local AceConfig = LibStub("AceConfig-3.0")
+local AceConfigDialog = LibStub("AceConfigDialog-3.0")
 --set some module defaults
 ComboPointsRedux:SetDefaultModuleState(false)
 ComboPointsRedux:SetDefaultModuleLibraries("AceConsole-3.0", "AceEvent-3.0")
