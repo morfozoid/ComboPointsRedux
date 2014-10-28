@@ -198,6 +198,8 @@ function ComboPointsRedux:OnInitialize()
 				desc = L["Open a standlone config window, allowing you to actually configure ComboPointsRedux."],
 				type = 'execute',
 				func = function()
+					InterfaceOptionsFrameCancel:Click()
+					GameMenuButtonContinue:Click()
 					ComboPointsRedux.OpenConfig()
 				end
 			}
