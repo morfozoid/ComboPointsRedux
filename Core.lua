@@ -1,9 +1,9 @@
 --[[
 Author: Starinnia
 CPR is a combo points display addon based on Funkydude's BasicComboPoints
-$Date: 2013-03-28 17:17:34 -0500 (Thu, 28 Mar 2013) $
-$Revision: 315 $
-Project Version: @project-version@
+$Date: 2013-06-30 15:27:22 +0000 (Sun, 30 Jun 2013) $
+$Revision: 327 $
+Project Version: r345
 contact: codemaster2010 AT gmail DOT com
 
 Copyright (c) 2007-2013 Michael J. Murray aka Lyte of Lothar(US)
@@ -186,27 +186,22 @@ function ComboPointsRedux:OnInitialize()
 	self:RegisterChatCommand("cpr", "OpenConfig", true, true)
 	self:RegisterChatCommand("cpredux", "OpenConfig", true, true)
 	
-	local spy = CreateFrame("FRAME", nil, UIParent)
-	spy.name = "ComboPointsRedux"
-	spy.addon = "ComboPointsRedux_Options"
-	spy:Hide()
-	spy:SetScript("OnShow", function(self)
-		--remove the dummy entry
-		for i, f in ipairs(INTERFACEOPTIONS_ADDONCATEGORIES) do
-			if f == self.name or f.name == self.name then
-				tremove(INTERFACEOPTIONS_ADDONCATEGORIES, i)
-				break
-			end
-		end
-		self:Hide()
-		
-		--load the config
-		LoadAddOn(self.addon)
-		
-		--refresh the screen
-		InterfaceOptionsFrame_OpenToCategory(self.name)
-	end)
-	InterfaceOptions_AddCategory(spy)
+	AceConfig:RegisterOptionsTable("ComboPointsRedux_Bliz", {
+		name = "ComboPointsRedux",
+		handler = ComboPointsRedux,
+		type = 'group',
+		args = {
+			config = {
+				name = L["Standalone config"],
+				desc = L["Open a standlone config window, allowing you to actually configure ComboPointsRedux."],
+				type = 'execute',
+				func = function()
+					ComboPointsRedux.OpenConfig()
+				end
+			}
+		},
+	})
+	AceConfigDialog:AddToBlizOptions("ComboPointsRedux_Bliz", "ComboPointsRedux")
 end
 
 function ComboPointsRedux:OnEnable()
@@ -468,8 +463,18 @@ function ComboPointsRedux:UpdateSettings(name)
 			
 			if name == "Combo Points" then
 				if form == 3 then
-					if module.text then module.text:Show() end
-					if module.graphics then module.graphics:Show() end
+					if db.hideOOC then
+						if InCombatLockdown() then
+							if module.text then module.text:Show() end
+							if module.graphics then module.graphics:Show() end
+						else
+							if module.text then module.text:Hide() end
+							if module.graphics then module.graphics:Hide() end
+						end
+					else
+						if module.text then module.text:Show() end
+						if module.graphics then module.graphics:Show() end
+					end
 				else
 					if module.text then module.text:Hide() end
 					if module.graphics then module.graphics:Hide() end
@@ -482,8 +487,18 @@ function ComboPointsRedux:UpdateSettings(name)
 		if name == "Burning Embers" then
 			if spec == 3 then
 				--3 is destruction
-				if module.text then module.text:Show() end
-				if module.graphics then module.graphics:Show() end
+				if db.hideOOC then
+					if InCombatLockdown() then
+						if module.text then module.text:Show() end
+						if module.graphics then module.graphics:Show() end
+					else
+						if module.text then module.text:Hide() end
+						if module.graphics then module.graphics:Hide() end
+					end
+				else
+					if module.text then module.text:Show() end
+					if module.graphics then module.graphics:Show() end
+				end
 			else
 				if module.text then module.text:Hide() end
 				if module.graphics then module.graphics:Hide() end
@@ -491,8 +506,18 @@ function ComboPointsRedux:UpdateSettings(name)
 		elseif name == "Soul Shards" then
 			if spec == 1 then
 				--1 is affliction
-				if module.text then module.text:Show() end
-				if module.graphics then module.graphics:Show() end
+				if db.hideOOC then
+					if InCombatLockdown() then
+						if module.text then module.text:Show() end
+						if module.graphics then module.graphics:Show() end
+					else
+						if module.text then module.text:Hide() end
+						if module.graphics then module.graphics:Hide() end
+					end
+				else
+					if module.text then module.text:Show() end
+					if module.graphics then module.graphics:Show() end
+				end
 			else
 				if module.text then module.text:Hide() end
 				if module.graphics then module.graphics:Hide() end
