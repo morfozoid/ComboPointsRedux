@@ -33,6 +33,7 @@ function mod:UNIT_AURA(_, unit)
 	
 	local _, _, _, count = UnitBuff("player", buff)
 	if count and count > 1 then
+		local originalCount = count
 		count = math.floor(count / 3)
 		
 		if self.graphics then
@@ -46,7 +47,7 @@ function mod:UNIT_AURA(_, unit)
 			end
 		end
 		
-		if self.text then self.text:SetNumPoints(count) end
+		if self.text then self.text:SetNumPoints(originalCount) end
 		
 		--should prevent spamming issues when UNIT_AURA fires and
 		--the aura we care about hasn't changed
