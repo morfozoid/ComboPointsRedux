@@ -594,5 +594,3 @@ LibStub('LibDualSpec-1.0'):EnhanceOptions(opts.args.profile, core.db)
 
 LibStub("AceConfig-3.0"):RegisterOptionsTable("ComboPointsRedux", opts)
 LibStub("AceConfigDialog-3.0"):SetDefaultSize("ComboPointsRedux", 800, 500)
-
-LibStub("AceConfigDialog-3.0"):AddToBlizOptions("ComboPointsRedux", "ComboPointsRedux")
