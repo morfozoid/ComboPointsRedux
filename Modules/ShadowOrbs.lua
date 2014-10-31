@@ -23,7 +23,7 @@ local buff = GetSpellInfo(77487)
 
 function mod:OnInitialize()
 	self.abbrev = "SO"
-	self.MAX_POINTS = 3
+	self.MAX_POINTS = 5
 	self.displayName = buff
 	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update" }
 end
