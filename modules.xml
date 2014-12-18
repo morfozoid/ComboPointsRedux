@@ -24,6 +24,7 @@
 
 <!--Priest-->
 <Script file="Modules\ShadowOrbs.lua"/>
+<Script file="Modules\Evangelism.lua"/>
 
 <!--Rogue-->
 <Script file="Modules\BanditsGuile.lua"/>
