@@ -8,7 +8,7 @@
 
 
 <!--Druid-->
-
+<Script file="Modules\Lacerate.lua" />
 
 <!--Hunter-->
 <Script file="Modules\Frenzy.lua"/>

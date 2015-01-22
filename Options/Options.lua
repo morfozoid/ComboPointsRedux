@@ -1,8 +1,8 @@
 --[[
 ComboPointsRedux_Options - LoD option module for ComboPointsRedux
 Author: Michael Joseph Murray aka Lyte of Lothar(US)
-$Revision: 293 $
-$Date: 2012-09-29 12:17:51 -0500 (Sat, 29 Sep 2012) $
+$Revision: 362 $
+$Date: 2015-01-21 21:34:29 -0600 (Wed, 21 Jan 2015) $
 Project Version: 2.0.0 beta2
 contact: codemaster2010 AT gmail DOT com
 
@@ -586,6 +586,16 @@ opts.args["Combo Points"].args.advancedPointTracking = {
 		arg = "advancedPointTracking",
 		order = 3,
 }
+
+opts.args["Lacerate"].args.showWhen.args.bearForm = {
+-		type = 'toggle',
+-		name = L["Hide Out of Bear Form"],
+-		desc = L["Hides the displays when you are not in bear form."],
+-		get = "Get",
+-		set = "Set",
+-		arg = "hideOutBear",
+-		order = 2,
+-	}
 
 --add profile controls
 opts.args.profile = LibStub("AceDBOptions-3.0"):GetOptionsTable(core.db)
