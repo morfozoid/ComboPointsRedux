@@ -575,6 +575,16 @@ if select(2, UnitClass("player")) == "DRUID" then
 		arg = "hideOutCat",
 		order = 2,
 	}
+	
+	opts.args["Lacerate"].args.showWhen.args.bearForm = {
+		type = 'toggle',
+		name = L["Hide Out of Bear Form"],
+		desc = L["Hides the displays when you are not in bear form."],
+		get = "Get",
+		set = "Set",
+		arg = "hideOutBear",
+		order = 2,
+	}
 end
 
 opts.args["Combo Points"].args.advancedPointTracking = {
@@ -586,16 +596,6 @@ opts.args["Combo Points"].args.advancedPointTracking = {
 		arg = "advancedPointTracking",
 		order = 3,
 }
-
-opts.args["Lacerate"].args.showWhen.args.bearForm = {
--		type = 'toggle',
--		name = L["Hide Out of Bear Form"],
--		desc = L["Hides the displays when you are not in bear form."],
--		get = "Get",
--		set = "Set",
--		arg = "hideOutBear",
--		order = 2,
--	}
 
 --add profile controls
 opts.args.profile = LibStub("AceDBOptions-3.0"):GetOptionsTable(core.db)
