@@ -2,12 +2,12 @@
 Author: Starinnia
 CPR is a combo points display addon based on Funkydude's BasicComboPoints
 Anticipation.lua - A module for tracking Anticipation buff stacks
-$Date: 2012-08-30 17:16:36 -0500 (Thu, 30 Aug 2012) $
-$Revision: 267 $
+$Date: 2015-01-29 23:30:19 -0600 (Thu, 29 Jan 2015) $
+$Revision: 367 $
 Project Version: @project-version@
 contact: codemaster2010 AT gmail DOT com
 
-Copyright (c) 2007-2012 Michael J. Murray aka Lyte of Lothar(US)
+Copyright (c) 2007-2015 Michael J. Murray aka Lyte of Lothar(US)
 All rights reserved unless otherwise explicitly stated.
 ]]
 
@@ -33,22 +33,23 @@ function mod:UNIT_AURA(_, unit)
 	
 	local _, _, _, count = UnitBuff("player", buff)
 	if count then
-		if self.graphics then
-			local r, g, b = cpr:GetColorByPoints(modName, count)
-			for i = count, 1, -1 do
-				self.graphics.points[i].icon:SetVertexColor(r, g, b)
-				self.graphics.points[i]:Show()
-			end
-			for j = self.MAX_POINTS, count+1, -1 do
-				self.graphics.points[j]:Hide()
-			end
-		end
-		if self.text then self.text:SetNumPoints(count) end
-		
-		--should prevent spamming issues when UNIT_AURA fires and
-		--the aura we care about hasn't changed
 		if oldCount ~= count then
+			--should prevent spamming issues when UNIT_AURA fires and
+			--the aura we care about hasn't changed
 			oldCount = count
+			
+			if self.graphics then
+				local r, g, b = cpr:GetColorByPoints(modName, count)
+				for i = count, 1, -1 do
+					self.graphics.points[i].icon:SetVertexColor(r, g, b)
+					self.graphics.points[i]:Show()
+				end
+				for j = self.MAX_POINTS, count+1, -1 do
+					self.graphics.points[j]:Hide()
+				end
+			end
+			if self.text then self.text:SetNumPoints(count) end
+			
 			cpr:DoFlash(modName, count)
 		end
 	else
