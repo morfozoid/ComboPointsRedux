@@ -3,6 +3,9 @@
 
 <Script file="Modules\Combo.lua"/>
 
+<!--Death Knight-->
+<Script file="Modules\Runes.lua"/>
+
 <!--Mage-->
 <Script file="Modules\Arcane.lua"/>
 
@@ -14,7 +17,5 @@
 
 <!--Warlock-->
 <Script file="Modules\SoulShards.lua"/>
-
-<!--Warrior-->
 
 </Ui>
