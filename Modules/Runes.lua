@@ -1,7 +1,7 @@
 --[[
 Author: Starinnia
 CPR is a combo points display addon based on Funkydude's BasicComboPoints
-ShadowOrbs.lua - A module for tracking Shadow Orbs stacks for shadow priests
+HolyPower.lua - A module for tracking Holy Power
 $Date: 2012-08-30 17:16:36 -0500 (Thu, 30 Aug 2012) $
 $Revision: 267 $
 Project Version: @project-version@
@@ -11,26 +11,25 @@ Copyright (c) 2007-2012 Michael J. Murray aka Lyte of Lothar(US)
 All rights reserved unless otherwise explicitly stated.
 ]]
 
-if select(2, UnitClass("player")) ~= "PRIEST" then return end
+if select(2, UnitClass("player")) ~= "DEATH KNIGHT" then return end
 
 local UnitPower = UnitPower
-local SPELL_POWER_SHADOW_ORBS = SPELL_POWER_SHADOW_ORBS
+local SPELL_POWER_RUNES = SPELL_POWER_RUNES
 
 local cpr = LibStub("AceAddon-3.0"):GetAddon("ComboPointsRedux")
-local modName = "Shadow Orbs"
+local modName = "Runes"
 local mod = cpr:NewModule(modName)
-local buff = GetSpellInfo(77487)
 
 function mod:OnInitialize()
-	self.abbrev = "SO"
-	self.MAX_POINTS = 5
-	self.displayName = buff
+	self.MAX_POINTS = 6
+	self.displayName = RUNES
+	self.abbrev = "RN"
 	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update" }
 end
 
 local oldCount = 0
 function mod:Update()
-	local count = UnitPower("player", SPELL_POWER_SHADOW_ORBS)
+	local count = UnitPower("player", SPELL_POWER_RUNES)
 	
 	if count > 0 then
 		if self.graphics then

@@ -3,16 +3,6 @@
 
 <Script file="Modules\Combo.lua"/>
 
-<!--Death Knight-->
-<Script file="Modules\BoneShield.lua"/>
-
-
-<!--Druid-->
-<Script file="Modules\Lacerate.lua" />
-
-<!--Hunter-->
-<Script file="Modules\Frenzy.lua"/>
-
 <!--Mage-->
 <Script file="Modules\Arcane.lua"/>
 
@@ -22,20 +12,8 @@
 <!--Paladin-->
 <Script file="Modules\HolyPower.lua"/>
 
-<!--Priest-->
-<Script file="Modules\ShadowOrbs.lua"/>
-<Script file="Modules\Evangelism.lua"/>
-
-<!--Rogue-->
-<Script file="Modules\BanditsGuile.lua"/>
-<Script file="Modules\Anticipation.lua"/>
-
-<!--Shaman-->
-<Script file="Modules\Fulmination.lua"/>
-
 <!--Warlock-->
 <Script file="Modules\SoulShards.lua"/>
-<Script file="Modules\Embers.lua"/>
 
 <!--Warrior-->
 

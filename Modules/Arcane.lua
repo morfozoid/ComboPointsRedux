@@ -13,7 +13,8 @@ All rights reserved unless otherwise explicitly stated.
 
 if select(2, UnitClass("player")) ~= "MAGE" then return end
 
-local UnitDebuff = UnitDebuff
+local UnitPower = UnitPower
+local SPELL_POWER_ARCANE_CHARGES = SPELL_POWER_ARCANE_CHARGES
 
 local cpr = LibStub("AceAddon-3.0"):GetAddon("ComboPointsRedux")
 local modName = "Arcane Blast"
@@ -22,16 +23,15 @@ local buff = GetSpellInfo(36032)
 
 function mod:OnInitialize()
 	self.abbrev = "AC"
-	self.MAX_POINTS = 6
+	self.MAX_POINTS = 4
 	self.displayName = buff
-	self.events = { "UNIT_AURA" }
+	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update" }
 end
 
 local oldCount = 0
-function mod:UNIT_AURA(_, unit)
-	if unit ~= "player" then return end
-	
-	local _, _, _, count = UnitDebuff("player", buff)
+function mod:Update()
+	local count = UnitPower("player", SPELL_POWER_ARCANE_CHARGES)
+    
 	if count then
 		if self.graphics then
 			local r, g, b = cpr:GetColorByPoints(modName, count)

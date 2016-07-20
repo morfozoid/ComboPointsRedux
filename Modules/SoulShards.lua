@@ -22,7 +22,7 @@ local mod = cpr:NewModule(modName)
 
 function mod:OnInitialize()
 	self.MAX_POINTS = 4
-	self.displayName = GetSpellInfo(87388)
+	self.displayName = SOUL_SHARDS_POWER
 	self.abbrev = "SS"
 	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update" }
 end
