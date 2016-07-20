@@ -14,9 +14,7 @@ All rights reserved unless otherwise explicitly stated.
 local GetComboPoints = GetComboPoints
 local UnitHasVehicleUI = UnitHasVehicleUI
 local UnitPower = UnitPower
---see this tweet from Lore:
--- https://twitter.com/CM_Lore/status/524320415053643777
-local UNIT_POWER_COMBO_POINTS = 4
+local SPELL_POWER_COMBO_POINTS = SPELL_POWER_COMBO_POINTS
 
 local cpr = LibStub("AceAddon-3.0"):GetAddon("ComboPointsRedux")
 local modName = "Combo Points"
@@ -24,7 +22,7 @@ local mod = cpr:NewModule(modName)
 
 function mod:OnInitialize()
 	self.abbrev = "CP"
-	self.MAX_POINTS = UnitPowerMax("player", UNIT_POWER_COMBO_POINTS)
+	self.MAX_POINTS = UnitPowerMax("player", SPELL_POWER_COMBO_POINTS)
 	self.displayName = COMBAT_TEXT_SHOW_COMBO_POINTS_TEXT
 	self.events = { "UNIT_COMBO_POINTS", ["PLAYER_TARGET_CHANGED"] = "UNIT_COMBO_POINTS"}
 end
@@ -37,7 +35,7 @@ local oldPoints = 0
 function mod:UNIT_COMBO_POINTS()
 	local points = 0
 	if cpr.db.profile.modules[modName].advancedPointTracking then
-		points = UnitPower("player", UNIT_POWER_COMBO_POINTS)
+		points = UnitPower("player", SPELL_POWER_COMBO_POINTS)
 	else
 		points = GetComboPoints(UnitHasVehicleUI("player") and "vehicle" or "player", "target")
 	end
