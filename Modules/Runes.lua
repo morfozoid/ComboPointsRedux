@@ -11,7 +11,7 @@ Copyright (c) 2007-2012 Michael J. Murray aka Lyte of Lothar(US)
 All rights reserved unless otherwise explicitly stated.
 ]]
 
-if select(2, UnitClass("player")) ~= "DEATH KNIGHT" then return end
+if select(2, UnitClass("player")) ~= "DEATHKNIGHT" then return end
 
 local UnitPower = UnitPower
 local SPELL_POWER_RUNES = SPELL_POWER_RUNES
