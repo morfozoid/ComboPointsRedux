@@ -20,7 +20,7 @@ local modName = "Chi"
 local mod = cpr:NewModule(modName)
 
 function mod:OnInitialize()
-	self.MAX_POINTS = 6 --4 is normal, 5 with a talent (we can assume most will take it)
+	self.MAX_POINTS = UnitPowerMax("player", SPELL_POWER_CHI)
 	self.displayName = CHI_POWER
 	self.abbrev = "Chi"
 	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update" }

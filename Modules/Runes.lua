@@ -21,7 +21,7 @@ local modName = "Runes"
 local mod = cpr:NewModule(modName)
 
 function mod:OnInitialize()
-	self.MAX_POINTS = 6
+	self.MAX_POINTS = UnitPowerMax("player", SPELL_POWER_RUNES)
 	self.displayName = RUNES
 	self.abbrev = "RN"
 	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update" }

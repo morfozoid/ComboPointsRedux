@@ -23,7 +23,7 @@ local buff = GetSpellInfo(36032)
 
 function mod:OnInitialize()
 	self.abbrev = "AC"
-	self.MAX_POINTS = 4
+	self.MAX_POINTS = UnitPowerMax("player", SPELL_POWER_ARCANE_CHARGES)
 	self.displayName = buff
 	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update" }
 end
