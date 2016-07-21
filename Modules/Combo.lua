@@ -2,8 +2,8 @@
 Author: Starinnia
 CPR is a combo points display addon based on Funkydude's BasicComboPoints
 Combo.lua - A module for tracking combo points
-$Date: 2012-10-04 09:06:17 -0500 (Thu, 04 Oct 2012) $
-$Revision: 295 $
+$Date: 2016-07-20 19:55:36 -0500 (Wed, 20 Jul 2016) $
+$Revision: 384 $
 Project Version: @project-version@
 contact: codemaster2010 AT gmail DOT com
 
@@ -27,7 +27,7 @@ function mod:OnInitialize()
         self.MAX_POINTS = 5
     end
 	self.displayName = COMBAT_TEXT_SHOW_COMBO_POINTS_TEXT
-	self.events = { "UNIT_COMBO_POINTS", ["PLAYER_TARGET_CHANGED"] = "UNIT_COMBO_POINTS"}
+	self.events = { ["UNIT_POWER"] = "Update"}
 end
 
 function mod:OnModuleEnable()
@@ -35,13 +35,8 @@ function mod:OnModuleEnable()
 end
 
 local oldPoints = 0
-function mod:UNIT_COMBO_POINTS()
-	local points = 0
-	if cpr.db.profile.modules[modName].advancedPointTracking then
-		points = UnitPower("player", SPELL_POWER_COMBO_POINTS)
-	else
-		points = GetComboPoints(UnitHasVehicleUI("player") and "vehicle" or "player", "target")
-	end
+function mod:Update()
+	local points = UnitPower("player", SPELL_POWER_COMBO_POINTS)
 	local r, g, b = cpr:GetColorByPoints(modName, points)
 	
 	if points > 0 then

@@ -1,8 +1,8 @@
 --[[
 Author: Starinnia
 CPR is a combo points display addon based on Funkydude's BasicComboPoints
-$Date: 2014-10-27 19:55:57 -0500 (Mon, 27 Oct 2014) $
-$Revision: 348 $
+$Date: 2016-07-20 19:55:36 -0500 (Wed, 20 Jul 2016) $
+$Revision: 384 $
 Project Version: @project-version@
 contact: codemaster2010 AT gmail DOT com
 
@@ -137,35 +137,6 @@ function ComboPointsRedux:OnInitialize()
 					hideOutCat = false,
 					hideOutBear = false,
 				},
-				['Deadly Poison'] = {
-					colors = {
-						[1] = {0, 1, 0},
-						[2] = {0, 1, 0},
-						[3] = {0, 1, 0},
-						[4] = {0, 1, 0},
-						[5] = {0, 0.5, 0},
-					},
-				},
-				['Bandits Guile'] = {
-					colors = {
-						[1] = {0, 1, 0},
-						[2] = {1, 1, 0},
-						[3] = {1, 0, 0},
-					},
-					disableText = true,
-				},
-				['Bone Shield'] = {
-					colors = {
-						['**'] = {1, 0.9, 0},
-						[6] = {1, 0, 0},
-					},
-				},
-				['Fulmination'] = {
-					colors = {
-						['**'] = {1, 0.9, 0},
-						[6] = {1, 0, 0},
-					},
-				},
 				['Soul Shards'] = {
 					colors = {
 						['**'] = {0.8, 0, 1},
@@ -198,7 +169,7 @@ function ComboPointsRedux:OnInitialize()
 				desc = L["Open a standlone config window, allowing you to actually configure ComboPointsRedux."],
 				type = 'execute',
 				func = function()
-					InterfaceOptionsFrameCancel:Click()
+                    InterfaceOptionsFrameCancel:Click()
 					GameMenuButtonContinue:Click()
 					ComboPointsRedux.OpenConfig()
 				end
