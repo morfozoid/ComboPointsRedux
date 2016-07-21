@@ -21,7 +21,7 @@ local modName = "Soul Shards"
 local mod = cpr:NewModule(modName)
 
 function mod:OnInitialize()
-	self.MAX_POINTS = UnitPowerMax("player", SPELL_POWER_SOUL_SHARDS)
+	self.MAX_POINTS = 4
 	self.displayName = SOUL_SHARDS_POWER
 	self.abbrev = "SS"
 	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update" }

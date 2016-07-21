@@ -21,7 +21,7 @@ local modName = "Holy Power"
 local mod = cpr:NewModule(modName)
 
 function mod:OnInitialize()
-	self.MAX_POINTS = UnitPowerMax("player", SPELL_POWER_HOLY_POWER)
+	self.MAX_POINTS = 5
 	self.displayName = HOLY_POWER
 	self.abbrev = "HP"
 	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update" }

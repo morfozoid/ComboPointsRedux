@@ -20,7 +20,7 @@ local modName = "Chi"
 local mod = cpr:NewModule(modName)
 
 function mod:OnInitialize()
-	self.MAX_POINTS = UnitPowerMax("player", SPELL_POWER_CHI)
+	self.MAX_POINTS = 5
 	self.displayName = CHI_POWER
 	self.abbrev = "Chi"
 	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update" }

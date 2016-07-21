@@ -22,10 +22,7 @@ local mod = cpr:NewModule(modName)
 
 function mod:OnInitialize()
 	self.abbrev = "CP"
-	self.MAX_POINTS = UnitPowerMax("player", SPELL_POWER_COMBO_POINTS)
-    if(self.MAX_POINTS == 0) then
-        self.MAX_POINTS = 5
-    end
+	self.MAX_POINTS = 6
 	self.displayName = COMBAT_TEXT_SHOW_COMBO_POINTS_TEXT
 	self.events = { ["UNIT_POWER"] = "Update"}
 end
