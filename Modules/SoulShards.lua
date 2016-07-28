@@ -27,11 +27,6 @@ function mod:OnInitialize()
 	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update" }
 end
 
-function mod:OnModuleEnable()
-	self:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED", "OnSpecChange")
-	self:OnSpecChange(nil, "player")
-end
-
 local oldCount = 0
 function mod:Update()
 	local count = UnitPower("player", SPELL_POWER_SOUL_SHARDS)
@@ -64,22 +59,5 @@ function mod:Update()
 		if self.text then self.text:SetNumPoints("") end
 		
 		oldCount = 0
-	end
-end
-
-function mod:OnSpecChange(_, unit)
-	if unit ~= "player" then return end
-	
-	local spec = GetSpecialization()
-	
-	if spec == 1 then
-		if not cpr.db.profile.modules[modName].hideOOC or UnitAffectingCombat("player") then
-			--1 is affliction
-			if self.text then self.text:Show() end
-			if self.graphics then self.graphics:Show() end
-		end
-	else
-		if self.text then self.text:Hide() end
-		if self.graphics then self.graphics:Hide() end
 	end
 end
