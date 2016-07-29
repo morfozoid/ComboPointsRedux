@@ -456,48 +456,6 @@ function ComboPointsRedux:UpdateSettings(name)
 				end
 			end
 		end
-	elseif CLASS == "WARLOCK" then
-		local spec = GetSpecialization()
-	
-		if name == "Burning Embers" then
-			if spec == 3 then
-				--3 is destruction
-				if db.hideOOC then
-					if InCombatLockdown() then
-						if module.text then module.text:Show() end
-						if module.graphics then module.graphics:Show() end
-					else
-						if module.text then module.text:Hide() end
-						if module.graphics then module.graphics:Hide() end
-					end
-				else
-					if module.text then module.text:Show() end
-					if module.graphics then module.graphics:Show() end
-				end
-			else
-				if module.text then module.text:Hide() end
-				if module.graphics then module.graphics:Hide() end
-			end
-		elseif name == "Soul Shards" then
-			if spec == 1 then
-				--1 is affliction
-				if db.hideOOC then
-					if InCombatLockdown() then
-						if module.text then module.text:Show() end
-						if module.graphics then module.graphics:Show() end
-					else
-						if module.text then module.text:Hide() end
-						if module.graphics then module.graphics:Hide() end
-					end
-				else
-					if module.text then module.text:Show() end
-					if module.graphics then module.graphics:Show() end
-				end
-			else
-				if module.text then module.text:Hide() end
-				if module.graphics then module.graphics:Hide() end
-			end
-		end
 	end
 end
 
