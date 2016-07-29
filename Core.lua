@@ -120,6 +120,8 @@ function ComboPointsRedux:OnInitialize()
 					},
 					graphicsAlpha = 1,
 					spacing = 5,
+					width = 250,
+					height = 25,
 					scale = 1,
 					strata = "HIGH",
 					graphicsX = nil,
@@ -207,22 +209,24 @@ function ComboPointsRedux:Reset()
 		module.text:SetPoint("CENTER", UIParent, "CENTER", math.random(-150, 150), math.random(-150, 150))
 		module.graphics:SetPoint("CENTER", UIParent, "CENTER", math.random(-150, 150), math.random(-150, 150))
 		
-		module.graphics:SetWidth(145*db.scale)
-		module.graphics:SetHeight(25*db.scale)
+		module.graphics:SetWidth(db.width*db.scale)
+		module.graphics:SetHeight(db.height*db.scale)
+		
+		local offset = db.spacing--*db.scale
+		
 		
 		for i = 1, module.MAX_POINTS do
 			module.graphics.points[i].icon:SetTexture(basepath..db.icon)
-			module.graphics.points[i]:SetWidth(25*db.scale)
-			module.graphics.points[i]:SetHeight(25*db.scale)
+			module.graphics.points[i]:SetWidth(((db.width*db.scale)-(offset*(num-1)))/num)
+			module.graphics.points[i]:SetHeight(db.height*db.scale)
 			module.graphics.points[i]:SetAlpha(db.graphicsAlpha)
 			module.graphics.points[i]:ClearAllPoints()
 		end
 		
-		local offset = db.spacing*db.scale
 		module.graphics.points[1]:SetPoint("BOTTOMLEFT", module.graphics, "BOTTOMLEFT", 0, 0)
 		if module.MAX_POINTS > 1 then
 			for i = 2, module.MAX_POINTS do
-				module.graphics.points[i]:SetPoint("BOTTOMLEFT", module.graphics, "BOTTOMLEFT", (offset*(i-1))+(25*(i-1)*db.scale), 0)
+				module.graphics.points[i]:SetPoint("BOTTOMLEFT", module.graphics, "BOTTOMLEFT", ((((db.width*db.scale)-(offset*(num-1)))/num)*(i-1))+(offset*(i-1)), 0)
 			end
 		end
 		
@@ -355,7 +359,7 @@ function ComboPointsRedux:UpdateSettings(name)
 	local db = self.db.profile.modules[name]
 	local module = self:GetModule(name)
 	local num = module.MAX_POINTS
-	local offset = db.spacing*db.scale
+	local offset = db.spacing--*db.scale
 	
 	--graphics
 	if not db.disableGraphics then
@@ -365,18 +369,18 @@ function ComboPointsRedux:UpdateSettings(name)
 			module.graphics.points[i].icon:SetTexture(basepath..db.icon)
 			module.graphics.points[i].icon:SetVertexColor(unpack(db.colors[1]))
 			module.graphics.points[i]:SetAlpha(db.graphicsAlpha)
-			module.graphics.points[i]:SetWidth(25*db.scale)
-			module.graphics.points[i]:SetHeight(25*db.scale)
+			module.graphics.points[i]:SetWidth(((db.width*db.scale)-(offset*(num-1)))/num)
+			module.graphics.points[i]:SetHeight(db.height*db.scale)
 			module.graphics.points[i]:ClearAllPoints()
 		end
 		
 		--adjust container scale
 		if db.orientation == "v" then
-			module.graphics:SetHeight(((25 * num) + (db.spacing * (num - 1))) * db.scale)
-			module.graphics:SetWidth(25*db.scale)
+			module.graphics:SetHeight(db.height*db.scale)
+			module.graphics:SetWidth(db.width*db.scale)
 		else
-			module.graphics:SetWidth(((25 * num) + (db.spacing * (num - 1))) * db.scale)
-			module.graphics:SetHeight(25*db.scale)
+			module.graphics:SetWidth(db.width*db.scale)
+			module.graphics:SetHeight(db.height*db.scale)
 		end
 		
 		--adjust for orientation changes (this updates spacing too)
@@ -391,7 +395,7 @@ function ComboPointsRedux:UpdateSettings(name)
 			module.graphics.points[1]:SetPoint("BOTTOMLEFT", module.graphics, "BOTTOMLEFT", 0, 0)
 			if module.MAX_POINTS > 1 then
 				for i = 2, module.MAX_POINTS do
-					module.graphics.points[i]:SetPoint("BOTTOMLEFT", module.graphics, "BOTTOMLEFT", (offset*(i-1))+(25*(i-1)*db.scale), 0)
+					module.graphics.points[i]:SetPoint("BOTTOMLEFT", module.graphics, "BOTTOMLEFT", ((((db.width*db.scale)-(offset*(num-1)))/num)*(i-1))+(offset*(i-1)), 0)
 				end
 			end
 		end
@@ -609,17 +613,17 @@ function ComboPointsRedux:MakeGraphicsFrame(moduleName, num)
 	g.moduleType = "graphics"
 	
 	local db = self.db.profile.modules[moduleName]
-	local offset = db.spacing*db.scale
+	local offset = db.spacing--*db.scale
 	g:SetBackdrop(bg)
 	g:SetFrameStrata(db.strata)
 	g:SetClampedToScreen(db.clampedGraphics)
 	
 	if db.orientation == "v" then
-		g:SetHeight(((25 * num) + (db.spacing * (num - 1))))
-		g:SetWidth(25*db.scale)
+		g:SetHeight(db.height*db.scale)
+		g:SetWidth(db.width*db.scale)
 	else
-		g:SetWidth(((25 * num) + (db.spacing * (num - 1))))
-		g:SetHeight(25*db.scale)
+		g:SetWidth(db.width*db.scale)
+		g:SetHeight(db.height*db.scale)
 	end
 	
 	local x = db.graphicsX
@@ -651,8 +655,8 @@ function ComboPointsRedux:MakeGraphicsFrame(moduleName, num)
 		g.points[i].icon:SetTexture(basepath..db.icon)
 		g.points[i].icon:SetVertexColor(unpack(db.colors[1]))
 		g.points[i]:SetAlpha(db.graphicsAlpha)
-		g.points[i]:SetHeight(25*db.scale)
-		g.points[i]:SetWidth(25*db.scale)
+		g.points[i]:SetHeight(db.height*db.scale)
+		g.points[i]:SetWidth(((db.width*db.scale)-(offset*(num-1)))/num)
 		g.points[i]:Hide()
 	end
 	
@@ -677,7 +681,7 @@ function ComboPointsRedux:MakeGraphicsFrame(moduleName, num)
 		g.points[1]:SetPoint("BOTTOMLEFT", g, "BOTTOMLEFT", 0, 0)
 		if num > 1 then
 			for i = 2, num do
-				g.points[i]:SetPoint("BOTTOMLEFT", g, "BOTTOMLEFT", (offset*(i-1))+(25*(i-1)*db.scale), 0)
+				g.points[i]:SetPoint("BOTTOMLEFT", g, "BOTTOMLEFT", ((((db.width*db.scale)-(offset*(num-1)))/num)*(i-1))+(offset*(i-1)), 0)
 			end
 		end
 	end
