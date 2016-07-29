@@ -648,7 +648,7 @@ function ComboPointsRedux:MakeGraphicsFrame(moduleName, num)
 	g:SetScript("OnLeave", OnLeave)
 	
 	g.points = {}
-	for i = 1, num do
+	for i = 1, 8 do
 		g.points[i] = CreateFrame("FRAME", nil, g)
 		g.points[i].icon = g.points[i]:CreateTexture(nil, "OVERLAY")
 		g.points[i].icon:SetAllPoints(g.points[i])

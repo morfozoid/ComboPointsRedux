@@ -22,9 +22,11 @@ local mod = cpr:NewModule(modName)
 
 function mod:OnInitialize()
 	self.abbrev = "CP"
-	self.MAX_POINTS = 6
+    -- Six combo points because of the Rogue talent
+    -- Deeper Strategem
+	self.MAX_POINTS = UnitPowerMax("player",4)
 	self.displayName = COMBAT_TEXT_SHOW_COMBO_POINTS_TEXT
-	self.events = { ["UNIT_POWER"] = "Update"}
+	self.events = { ["UNIT_POWER"] = "Update", ["PLAYER_TALENT_UPDATE"] = "Update", ["PLAYER_SPECIALIZATION_CHANGED"] = "Update"}
 end
 
 function mod:OnModuleEnable()
@@ -35,13 +37,17 @@ local oldPoints = 0
 function mod:Update()
 	local points = UnitPower("player", SPELL_POWER_COMBO_POINTS)
 	local r, g, b = cpr:GetColorByPoints(modName, points)
+	if self.MAX_POINTS ~= UnitPowerMax("player",4) then
+		self.MAX_POINTS = UnitPowerMax("player",4)
+		cpr:Refresh()
+	end
 	
 	if points > 0 then
 		if self.graphics then
 			--6.0.2 bug?/feature, there is no zero event between spending CPs
 			--and Anticipation stacks filling CPs
 			--so, hide all the points before showing the appropriate number
-			for i = 1, self.MAX_POINTS do
+			for i = 1, 8 do
 				self.graphics.points[i]:Hide()
 			end
 			for i = points, 1, -1 do
