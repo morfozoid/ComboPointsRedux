@@ -26,7 +26,7 @@ ComboPointsRedux:SetDefaultModulePrototype({
 		local modName = self:GetName()
 		if not ComboPointsRedux.db.profile.modules[modName].disableGraphics then
 			if not self.graphics then
-				self.graphics = ComboPointsRedux:MakeGraphicsFrame(modName, self.MAX_POINTS)
+				self.graphics = ComboPointsRedux:MakeGraphicsFrame(modName, self.MAX_POINTS, self.Count)
 			end
 			if ComboPointsRedux.db.profile.modules[modName].hideOOC then
 				if InCombatLockdown() then
@@ -521,7 +521,7 @@ function ComboPointsRedux:OpenConfig()
 end
 
 function ComboPointsRedux:GetColorByPoints(module, points)
-	return unpack(self.db.profile.modules[module].colors[points])--, self.db.profile.modules[module].graphicsAlpha, self.db.profile.modules[module].emptyPointAlpha
+	return unpack(self.db.profile.modules[module].colors[points])
 end
 
 function ComboPointsRedux:GetAlphas(module)
@@ -621,7 +621,7 @@ function ComboPointsRedux:MakeTextFrame(moduleName)
 	return f
 end
 
-function ComboPointsRedux:MakeGraphicsFrame(moduleName, num)
+function ComboPointsRedux:MakeGraphicsFrame(moduleName, num, count)
 	local g = CreateFrame("FRAME", nil, UIParent)
 	g.moduleName = moduleName
 	g.moduleType = "graphics"
@@ -668,10 +668,17 @@ function ComboPointsRedux:MakeGraphicsFrame(moduleName, num)
 		g.points[i].icon:SetAllPoints(g.points[i])
 		g.points[i].icon:SetTexture(basepath..db.icon)
 		g.points[i].icon:SetVertexColor(unpack(db.colors[1]))
-		g.points[i]:SetAlpha(db.graphicsAlpha)
+		g.points[i]:SetAlpha(db.emptyPointAlpha)
 		g.points[i]:SetHeight(db.height*db.scale)
 		g.points[i]:SetWidth(((db.width*db.scale)-(offset*(num-1)))/num)
 		g.points[i]:Hide()
+	end
+	
+	for i = 1, count do
+		g.points[i]:SetAlpha(db.graphicsAlpha)
+	end
+	for i = 1, num do
+		g.points[i]:Show()
 	end
 	
 	if not self.db.profile.locked then

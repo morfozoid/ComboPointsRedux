@@ -21,6 +21,7 @@ local mod = cpr:NewModule(modName)
 
 function mod:OnInitialize()
 	self.MAX_POINTS = 5
+	self.Count = UnitPower("player", SPELL_POWER_CHI)
 	self.displayName = CHI_POWER
 	self.abbrev = "Chi"
 	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update" }
@@ -29,16 +30,19 @@ end
 local oldCount = 0
 function mod:Update()
 	local count = UnitPower("player", SPELL_POWER_CHI)
+	local a, a2 = cpr:GetAlphas(modName)
 	
 	if count > 0 then
 		if self.graphics then
 			local r, g, b = cpr:GetColorByPoints(modName, count)
 			for i = count, 1, -1 do
 				self.graphics.points[i].icon:SetVertexColor(r, g, b)
+				self.graphics.points[i]:SetAlpha(a)
 				self.graphics.points[i]:Show()
 			end
 			for j = self.MAX_POINTS, count+1, -1 do
-				self.graphics.points[j]:Hide()
+				self.graphics.points[j]:SetAlpha(a2)
+				self.graphics.points[j]:Show()
 			end
 		end
 		if self.text then self.text:SetNumPoints(count) end
@@ -52,7 +56,7 @@ function mod:Update()
 	else
 		if self.graphics then
 			for i = 1, self.MAX_POINTS do
-				self.graphics.points[i]:Hide()
+				self.graphics.points[i]:SetAlpha(a2)
 			end
 		end
 		if self.text then self.text:SetNumPoints("") end

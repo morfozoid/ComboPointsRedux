@@ -24,6 +24,7 @@ local buff = GetSpellInfo(36032)
 function mod:OnInitialize()
 	self.abbrev = "AC"
 	self.MAX_POINTS = 4
+	self.Count = UnitPower("player", SPELL_POWER_ARCANE_CHARGES)
 	self.displayName = buff
 	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update" }
 end
@@ -31,16 +32,19 @@ end
 local oldCount = 0
 function mod:Update()
 	local count = UnitPower("player", SPELL_POWER_ARCANE_CHARGES)
-    
+	local a, a2 = cpr:GetAlphas(modName)
+	
 	if count then
 		if self.graphics then
 			local r, g, b = cpr:GetColorByPoints(modName, count)
 			for i = count, 1, -1 do
 				self.graphics.points[i].icon:SetVertexColor(r, g, b)
+				self.graphics.points[i]:SetAlpha(a)
 				self.graphics.points[i]:Show()
 			end
 			for j = self.MAX_POINTS, count+1, -1 do
-				self.graphics.points[j]:Hide()
+				self.graphics.points[j]:SetAlpha(a2)
+				self.graphics.points[j]:Show()
 			end
 		end
 		if self.text then self.text:SetNumPoints(count) end
@@ -54,7 +58,8 @@ function mod:Update()
 	else
 		if self.graphics then
 			for i = 1, self.MAX_POINTS do
-				self.graphics.points[i]:Hide()
+				self.graphics.points[i]:SetAlpha(a2)
+				self.graphics.points[i]:Show()
 			end
 		end
 		if self.text then self.text:SetNumPoints("") end

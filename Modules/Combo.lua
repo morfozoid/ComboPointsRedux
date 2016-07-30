@@ -24,7 +24,16 @@ function mod:OnInitialize()
 	self.abbrev = "CP"
     -- Six combo points because of the Rogue talent
     -- Deeper Strategem
-	self.MAX_POINTS = UnitPowerMax("player",4)
+	if IsPlayerSpell(193531) then
+		self.MAX_POINTS = 6
+	elseif IsPlayerSpell(114015) then
+		self.MAX_POINTS = 8
+	elseif IsPlayerSpell(14983) then
+		self.MAX_POINTS = 5
+	else
+		self.MAX_POINTS = 5
+	end
+	self.Count = UnitPower("player", SPELL_POWER_COMBO_POINTS)
 	self.displayName = COMBAT_TEXT_SHOW_COMBO_POINTS_TEXT
 	self.events = { ["UNIT_POWER"] = "Update", ["SPELLS_CHANGED"] = "UpdateMaxPoints"}
 end
@@ -75,13 +84,14 @@ function mod:UpdateMaxPoints()
 	local points = UnitPower("player", SPELL_POWER_COMBO_POINTS)
 	local oldmax = self.MAX_POINTS
 	local a, a2 = cpr:GetAlphas(modName)
+	
 	if IsPlayerSpell(193531) then
 		self.MAX_POINTS = 6
-	end
-	if IsPlayerSpell(114015) then
+	elseif IsPlayerSpell(114015) then
 		self.MAX_POINTS = 8
-	end
-	if IsPlayerSpell(14983) then
+	elseif IsPlayerSpell(14983) then
+		self.MAX_POINTS = 5
+	else
 		self.MAX_POINTS = 5
 	end
 	if oldmax ~= self.MAX_POINTS then
