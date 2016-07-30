@@ -26,7 +26,7 @@ function mod:OnInitialize()
     -- Deeper Strategem
 	self.MAX_POINTS = UnitPowerMax("player",4)
 	self.displayName = COMBAT_TEXT_SHOW_COMBO_POINTS_TEXT
-	self.events = { ["UNIT_POWER"] = "Update", ["PLAYER_TALENT_UPDATE"] = "Update", ["PLAYER_SPECIALIZATION_CHANGED"] = "Update"}
+	self.events = { ["UNIT_POWER"] = "Update", ["SPELLS_CHANGED"] = "UpdateMaxPoints"}
 end
 
 function mod:OnModuleEnable()
@@ -37,10 +37,7 @@ local oldPoints = 0
 function mod:Update()
 	local points = UnitPower("player", SPELL_POWER_COMBO_POINTS)
 	local r, g, b = cpr:GetColorByPoints(modName, points)
-	if self.MAX_POINTS ~= UnitPowerMax("player",4) then
-		self.MAX_POINTS = UnitPowerMax("player",4)
-		cpr:Refresh()
-	end
+	local a, a2 = cpr:GetAlphas(modName)
 	
 	if points > 0 then
 		if self.graphics then
@@ -48,11 +45,11 @@ function mod:Update()
 			--and Anticipation stacks filling CPs
 			--so, hide all the points before showing the appropriate number
 			for i = 1, 8 do
-				self.graphics.points[i]:Hide()
+				self.graphics.points[i]:SetAlpha(a2)
 			end
 			for i = points, 1, -1 do
 				self.graphics.points[i].icon:SetVertexColor(r, g, b)
-				self.graphics.points[i]:Show()
+				self.graphics.points[i]:SetAlpha(a)
 			end
 		end
 		
@@ -64,14 +61,46 @@ function mod:Update()
 		end
 	else
 		if self.graphics then
-			for i = 1, self.MAX_POINTS do
-				self.graphics.points[i]:Hide()
+			for i = 1, 8 do
+				self.graphics.points[i]:SetAlpha(a2)
 			end
 		end
 		points = ""
 		oldPoints = 0
 	end
 	if self.text then self.text:SetNumPoints(points) end
+end
+
+function mod:UpdateMaxPoints()
+	local points = UnitPower("player", SPELL_POWER_COMBO_POINTS)
+	local oldmax = self.MAX_POINTS
+	local a, a2 = cpr:GetAlphas(modName)
+	if IsPlayerSpell(193531) then
+		self.MAX_POINTS = 6
+	end
+	if IsPlayerSpell(114015) then
+		self.MAX_POINTS = 8
+	end
+	if IsPlayerSpell(14983) then
+		self.MAX_POINTS = 5
+	end
+	if oldmax ~= self.MAX_POINTS then
+		cpr:Refresh()
+		if self.graphics then
+			for i = 1, 8 do
+				self.graphics.points[i]:Hide()
+				self.graphics.points[i]:SetAlpha(a2)
+			end
+			for i = 1, self.MAX_POINTS do
+				self.graphics.points[i]:Show()
+			end
+			if points > 0 then
+				for i = 1, points do
+					self.graphics.points[i]:SetAlpha(a)
+				end
+			end
+		end
+	end
 end
 
 function mod:OnShapeshift()

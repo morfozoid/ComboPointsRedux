@@ -122,6 +122,7 @@ function ComboPointsRedux:OnInitialize()
 					spacing = 5,
 					width = 250,
 					height = 25,
+					emptyPointAlpha = .2,
 					scale = 1,
 					strata = "HIGH",
 					graphicsX = nil,
@@ -360,6 +361,8 @@ function ComboPointsRedux:UpdateSettings(name)
 	local module = self:GetModule(name)
 	local num = module.MAX_POINTS
 	local offset = db.spacing--*db.scale
+	local a = db.graphicsAlpha
+	local a2 = db.emptyPointAlpha
 	
 	--graphics
 	if not db.disableGraphics then
@@ -368,12 +371,19 @@ function ComboPointsRedux:UpdateSettings(name)
 		for i = 1, module.MAX_POINTS do
 			module.graphics.points[i].icon:SetTexture(basepath..db.icon)
 			module.graphics.points[i].icon:SetVertexColor(unpack(db.colors[1]))
-			module.graphics.points[i]:SetAlpha(db.graphicsAlpha)
 			module.graphics.points[i]:SetWidth(((db.width*db.scale)-(offset*(num-1)))/num)
 			module.graphics.points[i]:SetHeight(db.height*db.scale)
 			module.graphics.points[i]:ClearAllPoints()
 		end
-		
+		for i = 1, 8 do
+			module.graphics.points[i]:SetAlpha(a2)
+		end
+		local comboPoints = UnitPower("player", SPELL_POWER_COMBO_POINTS)
+		if comboPoints > 0 then
+			for i = 1, comboPoints do
+				module.graphics.points[i]:SetAlpha(a)
+			end
+		end
 		--adjust container scale
 		if db.orientation == "v" then
 			module.graphics:SetHeight(db.height*db.scale)
@@ -511,7 +521,11 @@ function ComboPointsRedux:OpenConfig()
 end
 
 function ComboPointsRedux:GetColorByPoints(module, points)
-	return unpack(self.db.profile.modules[module].colors[points])
+	return unpack(self.db.profile.modules[module].colors[points])--, self.db.profile.modules[module].graphicsAlpha, self.db.profile.modules[module].emptyPointAlpha
+end
+
+function ComboPointsRedux:GetAlphas(module)
+	return self.db.profile.modules[module].graphicsAlpha, self.db.profile.modules[module].emptyPointAlpha
 end
 
 local function OnDragStart(frame)

@@ -1,8 +1,8 @@
 --[[
 ComboPointsRedux_Options - LoD option module for ComboPointsRedux
 Author: Michael Joseph Murray aka Lyte of Lothar(US)
-$Revision: 384 $
-$Date: 2016-07-20 19:55:36 -0500 (Wed, 20 Jul 2016) $
+$Revision: 394 $
+$Date: 2016-07-22 22:09:14 +0000 (Fri, 22 Jul 2016) $
 Project Version: 2.0.0 beta2
 contact: codemaster2010 AT gmail DOT com
 
@@ -300,6 +300,18 @@ for name, module in core:IterateModules() do
 						max = 1.0,
 						step = 0.01,
 						order = 109,
+					},
+					emptyPointAlpha = {
+						type = 'range',
+						name = "Empty Point Alpha",
+						desc = "Select the alpha of empty combo points.",
+						get = "Get",
+						set = "Set",
+						arg = "emptyPointAlpha",
+						min = 0.0,
+						max = 1.0,
+						step = 0.01,
+						order = 114,
 					},
 					width = {
 						type = 'range',
