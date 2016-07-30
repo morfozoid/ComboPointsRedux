@@ -502,7 +502,7 @@ end
 local bg = {bgFile = "Interface\\Tooltips\\UI-Tooltip-Background"}
 function ComboPointsRedux:MakeTextFrame(moduleName)
 	local frameName = string.upper(moduleName:gsub("%s", ""))
-	local f = CreateFrame("FRAME", "CPR_"..frameName.."TEXT", UIParent)
+	local f = CreateFrame("FRAME", "CPR_"..frameName.."_TEXT", UIParent)
 	f.moduleName = moduleName
 	f.moduleType = "text"
 	
@@ -564,7 +564,7 @@ end
 
 function ComboPointsRedux:MakeGraphicsFrame(moduleName, num)
 	local frameName = string.upper(moduleName:gsub("%s", ""))
-	local g = CreateFrame("FRAME", "CPR_"..frameName.."GRAPHICS", UIParent)
+	local g = CreateFrame("FRAME", "CPR_"..frameName.."_GRAPHICS", UIParent)
 	g.moduleName = moduleName
 	g.moduleType = "graphics"
 	
