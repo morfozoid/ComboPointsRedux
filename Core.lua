@@ -220,8 +220,16 @@ function ComboPointsRedux:Reset()
 			module.graphics.points[i].icon:SetTexture(basepath..db.icon)
 			module.graphics.points[i]:SetWidth(((db.width*db.scale)-(offset*(num-1)))/num)
 			module.graphics.points[i]:SetHeight(db.height*db.scale)
-			module.graphics.points[i]:SetAlpha(db.graphicsAlpha)
+			module.graphics.points[i]:SetAlpha(db.emptyPointAlpha)
 			module.graphics.points[i]:ClearAllPoints()
+		end
+		for i = 1, 8 do
+			module.graphics.points[i]:SetAlpha(db.emptyPointAlpha)
+		end
+		if module.Count > 0 then
+			for i = 1, module.Count do
+				module.graphics.points[i]:SetAlpha(db.graphicsAlpha)
+			end
 		end
 		
 		module.graphics.points[1]:SetPoint("BOTTOMLEFT", module.graphics, "BOTTOMLEFT", 0, 0)
@@ -240,7 +248,7 @@ function ComboPointsRedux:Reset()
 		module.graphics:SetBackdropColor(1,1,1,1)
 		module.graphics:EnableMouse(true)
 		module.graphics:SetMovable(true)
-		module.graphics.points[1]:Show()
+		--module.graphics.points[1]:Show()
 		
 		module.text:SetBackdropColor(1,1,1,1)
 		module.text:EnableMouse(true)
@@ -312,7 +320,7 @@ function ComboPointsRedux:Refresh()
 					module.graphics:SetBackdropColor(1,1,1,0)
 					module.graphics:EnableMouse(false)
 					module.graphics:SetMovable(false)
-					module.graphics.points[1]:Hide()
+					--module.graphics.points[1]:Hide()
 				end
 			else
 				if module.text then
@@ -326,7 +334,7 @@ function ComboPointsRedux:Refresh()
 					module.graphics:SetBackdropColor(1,1,1,1)
 					module.graphics:EnableMouse(true)
 					module.graphics:SetMovable(true)
-					module.graphics.points[1]:Show()
+					--module.graphics.points[1]:Show()
 				end
 			end
 		end
@@ -378,9 +386,8 @@ function ComboPointsRedux:UpdateSettings(name)
 		for i = 1, 8 do
 			module.graphics.points[i]:SetAlpha(a2)
 		end
-		local comboPoints = UnitPower("player", SPELL_POWER_COMBO_POINTS)
-		if comboPoints > 0 then
-			for i = 1, comboPoints do
+		if module.Count > 0 then
+			for i = 1, module.Count do
 				module.graphics.points[i]:SetAlpha(a)
 			end
 		end
@@ -561,7 +568,8 @@ end
 
 local bg = {bgFile = "Interface\\Tooltips\\UI-Tooltip-Background"}
 function ComboPointsRedux:MakeTextFrame(moduleName)
-	local f = CreateFrame("FRAME", nil, UIParent)
+	local frameName = string.upper(moduleName:gsub("%s", ""))
+	local f = CreateFrame("FRAME", "CPR_"..frameName.."_TEXT", UIParent)
 	f.moduleName = moduleName
 	f.moduleType = "text"
 	
@@ -622,7 +630,8 @@ function ComboPointsRedux:MakeTextFrame(moduleName)
 end
 
 function ComboPointsRedux:MakeGraphicsFrame(moduleName, num, count)
-	local g = CreateFrame("FRAME", nil, UIParent)
+	local frameName = string.upper(moduleName:gsub("%s", ""))
+	local g = CreateFrame("FRAME", "CPR_"..frameName.."_GRAPHICS", UIParent)
 	g.moduleName = moduleName
 	g.moduleType = "graphics"
 	
@@ -685,7 +694,7 @@ function ComboPointsRedux:MakeGraphicsFrame(moduleName, num, count)
 		g:SetBackdropColor(1,1,1,1)
 		g:EnableMouse(true)
 		g:SetMovable(true)
-		g.points[1]:Show()
+		--g.points[1]:Show()
 	else
 		g:EnableMouse(false)
 		g:SetMovable(false)

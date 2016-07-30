@@ -92,7 +92,7 @@ opts.args["core"] = {
 								module.graphics:SetBackdropColor(1,1,1,1)
 								module.graphics:EnableMouse(true)
 								module.graphics:SetMovable(true)
-								module.graphics.points[1]:Show()
+								--module.graphics.points[1]:Show()
 							end
 							if module.text then	
 								module.text:SetBackdropColor(1,1,1,1)
@@ -105,7 +105,7 @@ opts.args["core"] = {
 								module.graphics:EnableMouse(false)
 								module.graphics:SetMovable(false)
 								module.graphics:SetBackdropColor(1,1,1,0)
-								module.graphics.points[1]:Hide()
+								--module.graphics.points[1]:Hide()
 							end
 							if module.text then
 								module.text:EnableMouse(false)
