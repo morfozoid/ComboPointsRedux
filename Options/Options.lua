@@ -1,8 +1,8 @@
 --[[
 ComboPointsRedux_Options - LoD option module for ComboPointsRedux
 Author: Michael Joseph Murray aka Lyte of Lothar(US)
-$Revision: 384 $
-$Date: 2016-07-20 19:55:36 -0500 (Wed, 20 Jul 2016) $
+$Revision: 394 $
+$Date: 2016-07-22 22:09:14 +0000 (Fri, 22 Jul 2016) $
 Project Version: 2.0.0 beta2
 contact: codemaster2010 AT gmail DOT com
 
@@ -92,7 +92,7 @@ opts.args["core"] = {
 								module.graphics:SetBackdropColor(1,1,1,1)
 								module.graphics:EnableMouse(true)
 								module.graphics:SetMovable(true)
-								module.graphics.points[1]:Show()
+								--module.graphics.points[1]:Show()
 							end
 							if module.text then	
 								module.text:SetBackdropColor(1,1,1,1)
@@ -105,7 +105,7 @@ opts.args["core"] = {
 								module.graphics:EnableMouse(false)
 								module.graphics:SetMovable(false)
 								module.graphics:SetBackdropColor(1,1,1,0)
-								module.graphics.points[1]:Hide()
+								--module.graphics.points[1]:Hide()
 							end
 							if module.text then
 								module.text:EnableMouse(false)
@@ -301,6 +301,42 @@ for name, module in core:IterateModules() do
 						step = 0.01,
 						order = 109,
 					},
+					emptyPointAlpha = {
+						type = 'range',
+						name = "Empty Point Alpha",
+						desc = "Select the alpha of empty combo points.",
+						get = "Get",
+						set = "Set",
+						arg = "emptyPointAlpha",
+						min = 0.0,
+						max = 1.0,
+						step = 0.01,
+						order = 114,
+					},
+					width = {
+						type = 'range',
+						name = "Width",
+						desc = "Set the width of the icon frame.",
+						arg = "width",
+						get = "Get",
+						set = "Set",
+						min = 10,
+						max = 500,
+						step = 0.01,
+						order = 110,
+					},
+					height = {
+						type = 'range',
+						name = "Height",
+						desc = "Set the Height of the icon frame.",
+						arg = "height",
+						get = "Get",
+						set = "Set",
+						min = 0,
+						max = 500,
+						step = 0.01,
+						order = 110,
+					},
 					scale = {
 						type = 'range',
 						name = L["Scale"],
@@ -310,8 +346,8 @@ for name, module in core:IterateModules() do
 						set = "Set",
 						min = 0.1,
 						max = 3.5,
-						step = 0.01,
-						order = 110,
+						step = 0.001,
+						order = 111,
 					},
 					spacing = {
 						type = 'range',
@@ -323,7 +359,7 @@ for name, module in core:IterateModules() do
 						min = -2,
 						max = 10,
 						step = 1,
-						order = 111,
+						order = 112,
 					},
 					x = {
 						type = 'range',
@@ -336,7 +372,7 @@ for name, module in core:IterateModules() do
 						softMax = math.floor(GetScreenWidth()),
 						step = 1,
 						bigStep = 5,
-						order = 112,
+						order = 113,
 					},
 					y = {
 						type = 'range',
@@ -349,7 +385,7 @@ for name, module in core:IterateModules() do
 						softMax = math.floor(GetScreenHeight()),
 						step = 1,
 						bigStep = 5,
-						order = 112,
+						order = 113,
 					},
 				},
 			},
