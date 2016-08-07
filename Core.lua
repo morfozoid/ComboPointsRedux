@@ -122,7 +122,7 @@ function ComboPointsRedux:OnInitialize()
 					spacing = 5,
 					width = 250,
 					height = 25,
-					emptyPointAlpha = .2,
+					emptyPointAlpha = 0.0,
 					scale = 1,
 					strata = "HIGH",
 					graphicsX = nil,
