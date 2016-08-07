@@ -39,7 +39,7 @@ function mod:Update()
 	--GetColorByPoints returns default color if count is 0, so use count of 1 if at 0
 	local CountForColor = 1
 	if self.Count > 0 then
-		local CountForColor = self.Count
+		CountForColor = self.Count
 	end
 	local r, g, b = cpr:GetColorByPoints(modName, CountForColor)
 	local a, a2 = cpr:GetAlphas(modName)
