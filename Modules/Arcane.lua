@@ -35,13 +35,8 @@ end
 
 local oldCount = 0
 function mod:Update()
-	self.Count = UnitPower("player", SPELL_POWER_ARCANE_CHARGES)
-	--GetColorByPoints returns default color if count is 0, so use count of 1 if at 0
-	local CountForColor = 1
-	if self.Count > 0 then
-		CountForColor = self.Count
-	end
-	local r, g, b = cpr:GetColorByPoints(modName, CountForColor)
+	self.Count = UnitPower("player", SPELL_POWER_ARCANE_CHARGES) or 0
+	local r, g, b = cpr:GetColorByPoints(modName, self.Count)
 	local a, a2 = cpr:GetAlphas(modName)
 	
 	if self.Count > 0 then

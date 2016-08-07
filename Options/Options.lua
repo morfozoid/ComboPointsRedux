@@ -243,12 +243,12 @@ for name, module in core:IterateModules() do
 				args = {
 					oneColor = {
 						type = 'color',
-						name = format(L["%d |4Point:Points;"], 1),
-						desc = format(L["Set the color to be used when you have %d |4point:points;."], 1),
-						arg = 1,
+						name = format(L["%d |4Point:Points;"], 0),
+						desc = format(L["Set the color to be used when you have %d |4point:points;."], 0),
+						arg = 0,
 						get = "Get",
 						set = "Set",
-						order = 1,
+						order = 0,
 					},
 					iconStyle = {
 						type = "select",
@@ -586,7 +586,7 @@ for name, module in core:IterateModules() do
 		},
 	}
 	
-	for j = 2, module.MAX_POINTS do
+	for j = 1, module.MAX_POINTS do
 		opts.args[name].args.graphics.args["color"..j] = {
 			type = 'color',
 			name = format(L["%d |4Point:Points;"], j),

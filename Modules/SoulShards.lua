@@ -25,17 +25,13 @@ function mod:OnInitialize()
 	self.Count = UnitPower("player", SPELL_POWER_SOUL_SHARDS)
 	self.displayName = SOUL_SHARDS_POWER
 	self.abbrev = "SS"
-	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update" }
+	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update", ["PLAYER_LOGIN"] = "Update" }
 end
 
 local oldCount = 0
 function mod:Update()
-	self.Count = UnitPower("player", SPELL_POWER_SOUL_SHARDS)
-	local CountForColor = 1
-	if self.Count > 0 then
-		CountForColor = self.Count
-	end
-	local r, g, b = cpr:GetColorByPoints(modName, CountForColor)
+	self.Count = UnitPower("player", SPELL_POWER_SOUL_SHARDS) or 0
+	local r, g, b = cpr:GetColorByPoints(modName, self.Count)
 	local a, a2 = cpr:GetAlphas(modName)
 	
 	if self.Count > 0 then
