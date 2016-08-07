@@ -33,7 +33,7 @@ function mod:Update()
 	self.Count = UnitPower("player", SPELL_POWER_SOUL_SHARDS)
 	local CountForColor = 1
 	if self.Count > 0 then
-		local CountForColor = self.Count
+		CountForColor = self.Count
 	end
 	local r, g, b = cpr:GetColorByPoints(modName, CountForColor)
 	local a, a2 = cpr:GetAlphas(modName)
