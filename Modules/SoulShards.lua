@@ -47,7 +47,6 @@ function mod:Update()
 				self.graphics.points[j]:Show()
 			end
 		end
-		if self.text then self.text:SetNumPoints(self.Count) end
 		
 		--should prevent spamming issues when UNIT_AURA fires and
 		--the aura we care about hasn't changed
@@ -63,8 +62,9 @@ function mod:Update()
 				self.graphics.points[i]:Show()
 			end
 		end
-		if self.text then self.text:SetNumPoints("") end
 		
 		oldCount = 0
 	end
+    
+    if self.text then self.text:SetNumPoints(cpr:GetTextValue(modName, self.Count)) end
 end

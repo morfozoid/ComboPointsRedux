@@ -111,7 +111,7 @@ function ComboPointsRedux:OnInitialize()
 					textY = nil,
 					clampedText = true,
 					disableText = false,
-					hideAtZero = true,
+					hideTextAtZero = true,
 					--graphics options
 					orientation = "h",
 					icon = "square",
@@ -727,4 +727,14 @@ function ComboPointsRedux:DoFlash(modName, count)
 		self.flasher:SetBackdropColor(r, g, b, db.screenFlashAlpha)
 		self.flasher:Show()
 	end
+end
+
+function ComboPointsRedux:GetTextValue(modName, count)
+    local db = self.db.profile.modules[modName]
+    
+    if count == 0 and db.hideTextAtZero then
+        return ""
+    else
+        return count
+    end
 end

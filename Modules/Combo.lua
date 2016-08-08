@@ -87,7 +87,7 @@ function mod:Update()
 		points = ""
 		oldPoints = 0
 	end
-	if self.text then self.text:SetNumPoints(self.Count) end
+	if self.text then self.text:SetNumPoints(cpr:GetTextValue(modName, self.Count)) end
 end
 
 function mod:UpdateMaxPoints()

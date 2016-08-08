@@ -495,6 +495,15 @@ for name, module in core:IterateModules() do
 						bigStep = 5,
 						order = 9,
 					},
+                    hideTextAtZero = {
+						type = 'toggle',
+						name = "Hide Text at Zero Points",
+						desc = "Do not show the text '0' when you have zero points.",
+						arg = "hideTextAtZero",
+						get = "Get",
+						set = "Set",
+						order = 10,
+					},
 				},
 			},
 			otherAlerts = {
