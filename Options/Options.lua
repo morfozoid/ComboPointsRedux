@@ -1,8 +1,8 @@
 --[[
 ComboPointsRedux_Options - LoD option module for ComboPointsRedux
 Author: Michael Joseph Murray aka Lyte of Lothar(US)
-$Revision: 394 $
-$Date: 2016-07-22 22:09:14 +0000 (Fri, 22 Jul 2016) $
+$Revision: 410 $
+$Date: 2016-08-08 18:53:00 -0500 (Mon, 08 Aug 2016) $
 Project Version: 2.0.0 beta2
 contact: codemaster2010 AT gmail DOT com
 
@@ -183,6 +183,10 @@ for name, module in core:IterateModules() do
 			core.db.profile.modules[name][info.arg] = ...
 			core:UpdatePositions(name)
 		end,
+        SetAndUpdate = function(self, info, ...)
+            core.db.profile.modules[name][info.arg] = ...
+            module:Update()
+        end,
 	}
 	
 	opts.args[name] = {
@@ -501,7 +505,7 @@ for name, module in core:IterateModules() do
 						desc = "Do not show the text '0' when you have zero points.",
 						arg = "hideTextAtZero",
 						get = "Get",
-						set = "Set",
+						set = "SetAndUpdate",
 						order = 10,
 					},
 				},
