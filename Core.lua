@@ -111,6 +111,7 @@ function ComboPointsRedux:OnInitialize()
 					textY = nil,
 					clampedText = true,
 					disableText = false,
+					hideAtZero = true,
 					--graphics options
 					orientation = "h",
 					icon = "square",
