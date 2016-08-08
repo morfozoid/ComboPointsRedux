@@ -43,7 +43,7 @@ function mod:OnInitialize()
 	end
 	self.Count = UnitPower("player", SPELL_POWER_COMBO_POINTS)
 	self.displayName = COMBAT_TEXT_SHOW_COMBO_POINTS_TEXT
-	self.events = { ["UNIT_POWER"] = "Update", ["SPELLS_CHANGED"] = "UpdateMaxPoints", ["PLAYER_SPECIALIZATION_CHANGED"] = "UpdateMaxPoints" }
+	self.events = { ["UNIT_POWER"] = "Update", ["SPELLS_CHANGED"] = "UpdateMaxPoints", ["PLAYER_SPECIALIZATION_CHANGED"] = "UpdateMaxPoints", ["PLAYER_LOGIN"] = "UpdateMaxPoints" }
 end
 
 function mod:OnModuleEnable()
@@ -52,12 +52,8 @@ end
 
 local oldPoints = 0
 function mod:Update()
-	self.Count = UnitPower("player", SPELL_POWER_COMBO_POINTS)
-	local CountForColor = 1
-	if self.Count > 0 then
-		CountForColor = self.Count
-	end
-	local r, g, b = cpr:GetColorByPoints(modName, CountForColor)
+	self.Count = UnitPower("player", SPELL_POWER_COMBO_POINTS) or 0
+	local r, g, b = cpr:GetColorByPoints(modName, self.Count)
 	local a, a2 = cpr:GetAlphas(modName)
 	
 	if self.Count > 0 then
@@ -118,19 +114,20 @@ function mod:UpdateMaxPoints()
 		end
 	else
 		self.MAX_POINTS = 0
-	end
-	
+	end	
 	if self.graphics then
 		for i = 1, 8 do
 			self.graphics.points[i]:Hide()
 			self.graphics.points[i]:SetAlpha(a2)
 		end
-		for i = 1, self.MAX_POINTS do
-			self.graphics.points[i]:Show()
-		end
-		if self.Count > 0 then
-			for i = 1, self.Count do
-				self.graphics.points[i]:SetAlpha(a)
+		if self.MAX_POINTS > 0 then
+			for i = 1, self.MAX_POINTS do
+				self.graphics.points[i]:Show()
+			end
+			if self.Count > 0 then
+				for i = 1, self.Count do
+					self.graphics.points[i]:SetAlpha(a)
+				end
 			end
 		end
 	end
