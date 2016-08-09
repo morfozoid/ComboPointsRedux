@@ -21,7 +21,7 @@ local mod = cpr:NewModule(modName)
 
 function mod:OnInitialize()
 	if GetSpecialization() == 3 then
-		self.MAX_POINTS = 5
+		self.MAX_POINTS = 6
 	else
 		self.MAX_POINTS = 0
 	end
@@ -78,7 +78,7 @@ function mod:UpdateMaxPoints()
 	local a, a2 = cpr:GetAlphas(modName)
 	
 	if GetSpecialization() == 3 then
-		self.MAX_POINTS = 5
+		self.MAX_POINTS = 6
 	else
 		self.MAX_POINTS = 0
 	end
