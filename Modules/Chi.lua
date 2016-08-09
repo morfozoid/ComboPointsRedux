@@ -21,14 +21,18 @@ local mod = cpr:NewModule(modName)
 
 function mod:OnInitialize()
 	if GetSpecialization() == 3 then
-		self.MAX_POINTS = 5
+		if IsPlayerSpell(115396) then
+			self.MAX_POINTS = 6
+		else
+			self.MAX_POINTS = 5
+		end
 	else
 		self.MAX_POINTS = 0
 	end
 	self.Count = UnitPower("player", SPELL_POWER_CHI)
 	self.displayName = CHI_POWER
 	self.abbrev = "Chi"
-	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update", ["PLAYER_SPECIALIZATION_CHANGED"] = "UpdateMaxPoints", ["PLAYER_LOGIN"] = "UpdateMaxPoints" }
+	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update", ["PLAYER_SPECIALIZATION_CHANGED"] = "UpdateMaxPoints", ["PLAYER_LOGIN"] = "UpdateMaxPoints", ["SPELLS_CHANGED"] = "UpdateMaxPoints" }
 end
 
 local oldCount = 0
@@ -78,7 +82,11 @@ function mod:UpdateMaxPoints()
 	local a, a2 = cpr:GetAlphas(modName)
 	
 	if GetSpecialization() == 3 then
-		self.MAX_POINTS = 5
+		if IsPlayerSpell(115396) then
+			self.MAX_POINTS = 6
+		else
+			self.MAX_POINTS = 5
+		end
 	else
 		self.MAX_POINTS = 0
 	end
