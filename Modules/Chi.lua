@@ -6,7 +6,6 @@ $Date: 2012-07-10 17:02:06 -0500 (Tue, 10 Jul 2012) $
 $Revision: 250 $
 Project Version: @project-version@
 contact: codemaster2010 AT gmail DOT com
-
 Copyright (c) 2007-2012 Michael J. Murray aka Lyte of Lothar(US)
 All rights reserved unless otherwise explicitly stated.
 ]]
@@ -21,14 +20,18 @@ local mod = cpr:NewModule(modName)
 
 function mod:OnInitialize()
 	if GetSpecialization() == 3 then
-		self.MAX_POINTS = 6
+		if IsPlayerSpell(115396) then
+			self.MAX_POINTS = 6
+		else
+			self.MAX_POINTS = 5
+		end
 	else
 		self.MAX_POINTS = 0
 	end
 	self.Count = UnitPower("player", SPELL_POWER_CHI)
 	self.displayName = CHI_POWER
 	self.abbrev = "Chi"
-	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update", ["PLAYER_SPECIALIZATION_CHANGED"] = "UpdateMaxPoints", ["PLAYER_LOGIN"] = "UpdateMaxPoints" }
+	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update", ["PLAYER_SPECIALIZATION_CHANGED"] = "UpdateMaxPoints", ["PLAYER_LOGIN"] = "UpdateMaxPoints", ["SPELLS_CHANGED"] = "UpdateMaxPoints" }
 end
 
 local oldCount = 0
@@ -51,6 +54,7 @@ function mod:Update()
 				self.graphics.points[j]:Show()
 			end
 		end
+		if self.text then self.text:SetNumPoints(self.Count) end
 		
 		--should prevent spamming issues when UNIT_AURA fires and
 		--the aura we care about hasn't changed
@@ -66,11 +70,10 @@ function mod:Update()
 				self.graphics.points[i]:Show()
 			end
 		end
+		if self.text then self.text:SetNumPoints("") end
 		
 		oldCount = 0
 	end
-    
-    if self.text then self.text:SetNumPoints(cpr:GetTextValue(modName, self.Count)) end
 end
 
 function mod:UpdateMaxPoints()
@@ -78,7 +81,11 @@ function mod:UpdateMaxPoints()
 	local a, a2 = cpr:GetAlphas(modName)
 	
 	if GetSpecialization() == 3 then
-		self.MAX_POINTS = 6
+		if IsPlayerSpell(115396) then
+			self.MAX_POINTS = 6
+		else
+			self.MAX_POINTS = 5
+		end
 	else
 		self.MAX_POINTS = 0
 	end
