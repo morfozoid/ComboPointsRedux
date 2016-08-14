@@ -320,7 +320,7 @@ for name, module in core:IterateModules() do
 					width = {
 						type = 'range',
 						name = "Width",
-						desc = "Set the width of the icon frame.",
+						desc = "Set the total width of the icon frame. This is the height when in Vertical mode.",
 						arg = "width",
 						get = "Get",
 						set = "Set",
@@ -332,7 +332,7 @@ for name, module in core:IterateModules() do
 					height = {
 						type = 'range',
 						name = "Height",
-						desc = "Set the Height of the icon frame.",
+						desc = "Set the total Height of the icon frame. This is the width when in Vertical mode.",
 						arg = "height",
 						get = "Get",
 						set = "Set",
