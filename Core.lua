@@ -214,7 +214,7 @@ function ComboPointsRedux:Reset()
 		module.graphics:SetWidth(db.width*db.scale)
 		module.graphics:SetHeight(db.height*db.scale)
 		
-		local offset = db.spacing--*db.scale
+		local offset = db.spacing
 		
 		local num = module.MAX_POINTS
 		for i = 1, num do
@@ -394,8 +394,8 @@ function ComboPointsRedux:UpdateSettings(name)
 		end
 		--adjust container scale
 		if db.orientation == "v" then
-			module.graphics:SetHeight(db.height*db.scale)
-			module.graphics:SetWidth(db.width*db.scale)
+			module.graphics:SetHeight(db.width*db.scale)
+			module.graphics:SetWidth(db.height*db.scale)
 		else
 			module.graphics:SetWidth(db.width*db.scale)
 			module.graphics:SetHeight(db.height*db.scale)
@@ -594,14 +594,14 @@ function ComboPointsRedux:MakeGraphicsFrame(moduleName, num, count)
 	g.moduleType = "graphics"
 	
 	local db = self.db.profile.modules[moduleName]
-	local offset = db.spacing--*db.scale
+	local offset = db.spacing
 	g:SetBackdrop(bg)
 	g:SetFrameStrata(db.strata)
 	g:SetClampedToScreen(db.clampedGraphics)
 	
 	if db.orientation == "v" then
-		g:SetHeight(db.height*db.scale)
-		g:SetWidth(db.width*db.scale)
+		g:SetHeight(db.width*db.scale)
+		g:SetWidth(db.height*db.scale)
 	else
 		g:SetWidth(db.width*db.scale)
 		g:SetHeight(db.height*db.scale)
