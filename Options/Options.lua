@@ -245,6 +245,11 @@ for name, module in core:IterateModules() do
 				order = 4,
 				disabled = function() return core.db.profile.modules[name].disableGraphics end,
 				args = {
+                    help = {
+                        order = 0,
+                        type = 'description',
+                        name = '- Point height and width are calculated from the overall frame size (then multiplied by Scale) \n    - Example:\n    - You want 20x20 square icons and 5 pixels of spacing between them.\n    - Your class has six points.\n    - Set Height to 20 and Width to 150\n    - 150 = (20 * 6) + (5 * 6)\n'
+                    },
 					oneColor = {
 						type = 'color',
 						name = format(L["%d |4Point:Points;"], 0),
@@ -252,7 +257,7 @@ for name, module in core:IterateModules() do
 						arg = 0,
 						get = "Get",
 						set = "Set",
-						order = 0,
+						order = 1,
 					},
 					iconStyle = {
 						type = "select",
@@ -607,7 +612,7 @@ for name, module in core:IterateModules() do
 			arg = j,
 			get = "Get",
 			set = "Set",
-			order = j,
+			order = j+1,
 		}
 	end
 	
