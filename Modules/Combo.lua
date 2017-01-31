@@ -2,8 +2,8 @@
 Author: Starinnia
 CPR is a combo points display addon based on Funkydude's BasicComboPoints
 Combo.lua - A module for tracking combo points
-$Date: 2016-07-20 19:55:36 -0500 (Wed, 20 Jul 2016) $
-$Revision: 384 $
+$Date: 2016-08-08 18:33:10 -0500 (Mon, 08 Aug 2016) $
+$Revision: 409 $
 Project Version: @project-version@
 contact: codemaster2010 AT gmail DOT com
 
@@ -26,7 +26,7 @@ function mod:OnInitialize()
 		if IsPlayerSpell(193531) then
 			self.MAX_POINTS = 6
 		elseif IsPlayerSpell(114015) then
-			self.MAX_POINTS = 8
+			self.MAX_POINTS = 10
 		elseif IsPlayerSpell(14983) then
 			self.MAX_POINTS = 5
 		else
@@ -61,7 +61,7 @@ function mod:Update()
 			--6.0.2 bug?/feature, there is no zero event between spending CPs
 			--and Anticipation stacks filling CPs
 			--so, hide all the points before showing the appropriate number
-			for i = 1, 8 do
+			for i = 1, self.MAX_POINTS do
 				self.graphics.points[i]:SetAlpha(a2)
 				self.graphics.points[i].icon:SetVertexColor(r, g, b)
 			end
@@ -79,7 +79,7 @@ function mod:Update()
 		end
 	else
 		if self.graphics then
-			for i = 1, 8 do
+			for i = 1, self.MAX_POINTS do
 				self.graphics.points[i].icon:SetVertexColor(r, g, b)
 				self.graphics.points[i]:SetAlpha(a2)
 			end
@@ -98,7 +98,7 @@ function mod:UpdateMaxPoints()
 		if IsPlayerSpell(193531) then
 			self.MAX_POINTS = 6
 		elseif IsPlayerSpell(114015) then
-			self.MAX_POINTS = 8
+			self.MAX_POINTS = 10
 		elseif IsPlayerSpell(14983) then
 			self.MAX_POINTS = 5
 		else
@@ -116,7 +116,7 @@ function mod:UpdateMaxPoints()
 		self.MAX_POINTS = 0
 	end	
 	if self.graphics then
-		for i = 1, 8 do
+		for i = 1, self.MAX_POINTS do
 			self.graphics.points[i]:Hide()
 			self.graphics.points[i]:SetAlpha(a2)
 		end
@@ -136,16 +136,6 @@ end
 	
 function mod:OnShapeshift()
 	local form = GetShapeshiftForm(true)
-	--[[
-	forms:
-	0 - caster / treant
-	1 - bear
-	2 - cat
-	3 - flight / aquatic
-	4 - moonkin
-	5 - 
-	6 - stag
-	]]
 	
 	if cpr.db.profile.modules[modName].hideOutCat then
 		--if we only show combo points in cat form...
