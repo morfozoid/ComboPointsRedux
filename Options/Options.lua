@@ -1,12 +1,10 @@
 --[[
 ComboPointsRedux_Options - LoD option module for ComboPointsRedux
 Author: Michael Joseph Murray aka Lyte of Lothar(US)
-$Revision: 410 $
-$Date: 2016-08-08 18:53:00 -0500 (Mon, 08 Aug 2016) $
-Project Version: 2.0.0 beta2
+Project Version: @project-version@
 contact: codemaster2010 AT gmail DOT com
 
-Copyright (c) 2007-2012 Michael J. Murray aka Lyte of Lothar(US)
+Copyright (c) 2007-2017 Michael J. Murray aka Lyte of Lothar(US)
 All rights reserved unless otherwise explicitly stated.
 ]]
 

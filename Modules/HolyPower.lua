@@ -2,12 +2,10 @@
 Author: Starinnia
 CPR is a combo points display addon based on Funkydude's BasicComboPoints
 HolyPower.lua - A module for tracking Holy Power
-$Date: 2012-08-30 17:16:36 -0500 (Thu, 30 Aug 2012) $
-$Revision: 267 $
 Project Version: @project-version@
 contact: codemaster2010 AT gmail DOT com
 
-Copyright (c) 2007-2012 Michael J. Murray aka Lyte of Lothar(US)
+Copyright (c) 2007-2017 Michael J. Murray aka Lyte of Lothar(US)
 All rights reserved unless otherwise explicitly stated.
 ]]
 

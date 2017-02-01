@@ -2,12 +2,10 @@
 Author: Starinnia
 CPR is a combo points display addon based on Funkydude's BasicComboPoints
 SoulShards.lua - A module for tracking Soul Shards
-$Date: 2012-12-06 13:38:15 -0600 (Thu, 06 Dec 2012) $
-$Revision: 303 $
 Project Version: @project-version@
 contact: codemaster2010 AT gmail DOT com
 
-Copyright (c) 2007-2012 Michael J. Murray aka Lyte of Lothar(US)
+Copyright (c) 2007-2017 Michael J. Murray aka Lyte of Lothar(US)
 All rights reserved unless otherwise explicitly stated.
 ]]
 
