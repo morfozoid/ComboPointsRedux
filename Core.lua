@@ -140,12 +140,6 @@ function ComboPointsRedux:OnInitialize()
 					hideOOC = false,
 					hideOutCat = false,
 					hideOutBear = false,
-				},
-				['Soul Shards'] = {
-					colors = {
-						['**'] = {0.8, 0, 1},
-					},
-					icon = "Shard",
 				}
 			},
 			locked = false,
