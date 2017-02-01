@@ -1,6 +1,8 @@
 --[[
 ComboPointsRedux_Options - LoD option module for ComboPointsRedux
 Author: Michael Joseph Murray aka Lyte of Lothar(US)
+Last File Hash: @file-abbreviated-hash@
+Last File Date: @file-date-iso@
 Project Version: @project-version@
 contact: codemaster2010 AT gmail DOT com
 
