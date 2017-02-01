@@ -4,4 +4,4 @@ Similar mechanics include:
 * Shadow Orbs
 * Holy Power
 * Soul Shards
-* Burning Embers
+* Arcane Power
