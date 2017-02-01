@@ -384,7 +384,7 @@ function ComboPointsRedux:UpdateSettings(name)
 			module.graphics.points[i]:SetHeight(db.height*db.scale)
 			module.graphics.points[i]:ClearAllPoints()
 		end
-		for i = 1, 8 do
+		for i = 1, 10 do
 			module.graphics.points[i]:SetAlpha(a2)
 		end
 		if module.Count > 0 then
@@ -629,7 +629,7 @@ function ComboPointsRedux:MakeGraphicsFrame(moduleName, num, count)
 	g:SetScript("OnLeave", OnLeave)
 	
 	g.points = {}
-	for i = 1, 8 do
+	for i = 1, 10 do
 		g.points[i] = CreateFrame("FRAME", nil, g)
 		g.points[i].icon = g.points[i]:CreateTexture(nil, "OVERLAY")
 		g.points[i].icon:SetAllPoints(g.points[i])
