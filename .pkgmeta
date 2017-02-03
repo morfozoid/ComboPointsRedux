@@ -30,3 +30,5 @@ externals:
 
 move-folders:
     ComboPointsRedux/Options: ComboPointsRedux_Options
+    
+manual-changelog: CHANGELOG.txt

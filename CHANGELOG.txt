@@ -1,0 +1,5 @@
+Version 4.1.0
+    - Remove default color for Soul Shard graphics, this resolves WowAce #39
+        * Some users experienced a bug where database defaults were still applied even after setting custom colors
+    - FIX Anticipation max points value (was 8, now 10)
+    - ADD Festering Wounds module, _warning_ limited testing
