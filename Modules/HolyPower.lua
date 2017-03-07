@@ -29,7 +29,7 @@ function mod:OnInitialize()
 	self.Count = UnitPower("player", SPELL_POWER_HOLY_POWER)
 	self.displayName = HOLY_POWER
 	self.abbrev = "HP"
-	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update", ["PLAYER_SPECIALIZATION_CHANGED"] = "UpdateMaxPoints", ["PLAYER_LOGIN"] = "UpdateMaxPoints" }
+	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update", ["PLAYER_SPECIALIZATION_CHANGED"] = "UpdateMaxPoints", ["PLAYER_LOGIN"] = "UpdateMaxPoints", ["PLAYER_ENTERING_WORLD"] = "UpdateMaxPoints" }
 end
 
 local oldCount = 0
