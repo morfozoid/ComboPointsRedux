@@ -1,3 +1,6 @@
+Version 4.1.1
+    - Fix for WowAce #50, Holy Power module not always showing
+
 Version 4.1.0
     - Remove default color for Soul Shard graphics, this resolves WowAce #39
         * Some users experienced a bug where database defaults were still applied even after setting custom colors
