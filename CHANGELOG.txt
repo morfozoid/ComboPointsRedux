@@ -1,3 +1,8 @@
+Version 5.0.0
+    - Updates for World of Warcraft API changes for the BFA 8.0 patch
+        - Updates to use Enum.PowerType rather than old Spell Power constants
+        - Update to use UNIT_POWER_UPDATE event over removed (?) UNIT_POWER event
+    
 Version 4.1.1
     - Fix for WowAce #50, Holy Power module not always showing
 
