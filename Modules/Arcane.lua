@@ -14,7 +14,7 @@ All rights reserved unless otherwise explicitly stated.
 if select(2, UnitClass("player")) ~= "MAGE" then return end
 
 local UnitPower = UnitPower
-local SPELL_POWER_ARCANE_CHARGES = SPELL_POWER_ARCANE_CHARGES
+local SPELL_POWER_ARCANE_CHARGES = Enum.PowerType.ArcaneCharges
 
 local cpr = LibStub("AceAddon-3.0"):GetAddon("ComboPointsRedux")
 local modName = "Arcane Blast"
@@ -30,7 +30,7 @@ function mod:OnInitialize()
 	end
 	self.Count = UnitPower("player", SPELL_POWER_ARCANE_CHARGES)
 	self.displayName = buff
-	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update", ["PLAYER_SPECIALIZATION_CHANGED"] = "UpdateMaxPoints", ["PLAYER_LOGIN"] = "UpdateMaxPoints" }
+	self.events = { ["UNIT_POWER_UPDATE"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update", ["PLAYER_SPECIALIZATION_CHANGED"] = "UpdateMaxPoints", ["PLAYER_LOGIN"] = "UpdateMaxPoints" }
 end
 
 local oldCount = 0

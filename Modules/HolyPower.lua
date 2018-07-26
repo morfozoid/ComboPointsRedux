@@ -14,7 +14,7 @@ All rights reserved unless otherwise explicitly stated.
 if select(2, UnitClass("player")) ~= "PALADIN" then return end
 
 local UnitPower = UnitPower
-local SPELL_POWER_HOLY_POWER = SPELL_POWER_HOLY_POWER
+local SPELL_POWER_HOLY_POWER = Enum.PowerType.HolyPower
 
 local cpr = LibStub("AceAddon-3.0"):GetAddon("ComboPointsRedux")
 local modName = "Holy Power"
@@ -29,7 +29,7 @@ function mod:OnInitialize()
 	self.Count = UnitPower("player", SPELL_POWER_HOLY_POWER)
 	self.displayName = HOLY_POWER
 	self.abbrev = "HP"
-	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update", ["PLAYER_SPECIALIZATION_CHANGED"] = "UpdateMaxPoints", ["PLAYER_LOGIN"] = "UpdateMaxPoints", ["PLAYER_ENTERING_WORLD"] = "UpdateMaxPoints" }
+	self.events = { ["UNIT_POWER_UPDATE"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update", ["PLAYER_SPECIALIZATION_CHANGED"] = "UpdateMaxPoints", ["PLAYER_LOGIN"] = "UpdateMaxPoints", ["PLAYER_ENTERING_WORLD"] = "UpdateMaxPoints" }
 end
 
 local oldCount = 0

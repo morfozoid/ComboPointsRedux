@@ -14,7 +14,7 @@ All rights reserved unless otherwise explicitly stated.
 if select(2, UnitClass("player")) ~= "WARLOCK" then return end
 
 local UnitPower = UnitPower
-local SPELL_POWER_SOUL_SHARDS = SPELL_POWER_SOUL_SHARDS
+local SPELL_POWER_SOUL_SHARDS = Enum.PowerType.SoulShards
 
 local cpr = LibStub("AceAddon-3.0"):GetAddon("ComboPointsRedux")
 local modName = "Soul Shards"
@@ -25,7 +25,7 @@ function mod:OnInitialize()
 	self.Count = UnitPower("player", SPELL_POWER_SOUL_SHARDS)
 	self.displayName = SOUL_SHARDS_POWER
 	self.abbrev = "SS"
-	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update", ["PLAYER_LOGIN"] = "Update" }
+	self.events = { ["UNIT_POWER_UPDATE"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update", ["PLAYER_LOGIN"] = "Update" }
 end
 
 local oldCount = 0

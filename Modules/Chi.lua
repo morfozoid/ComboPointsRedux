@@ -14,6 +14,7 @@ All rights reserved unless otherwise explicitly stated.
 if select(2, UnitClass("player")) ~= "MONK" then return end
 
 local UnitPower = UnitPower
+local SPELL_POWER_CHI = Enum.PowerType.Chi
 
 local cpr = LibStub("AceAddon-3.0"):GetAddon("ComboPointsRedux")
 local modName = "Chi"
@@ -32,7 +33,7 @@ function mod:OnInitialize()
 	self.Count = UnitPower("player", SPELL_POWER_CHI)
 	self.displayName = CHI_POWER
 	self.abbrev = "Chi"
-	self.events = { ["UNIT_POWER"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update", ["PLAYER_SPECIALIZATION_CHANGED"] = "UpdateMaxPoints", ["PLAYER_LOGIN"] = "UpdateMaxPoints", ["SPELLS_CHANGED"] = "UpdateMaxPoints" }
+	self.events = { ["UNIT_POWER_UPDATE"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update", ["PLAYER_SPECIALIZATION_CHANGED"] = "UpdateMaxPoints", ["PLAYER_LOGIN"] = "UpdateMaxPoints", ["SPELLS_CHANGED"] = "UpdateMaxPoints" }
 end
 
 local oldCount = 0

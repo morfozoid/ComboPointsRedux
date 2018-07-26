@@ -14,7 +14,7 @@ All rights reserved unless otherwise explicitly stated.
 local GetComboPoints = GetComboPoints
 local UnitHasVehicleUI = UnitHasVehicleUI
 local UnitPower = UnitPower
-local SPELL_POWER_COMBO_POINTS = SPELL_POWER_COMBO_POINTS
+local SPELL_POWER_COMBO_POINTS = Enum.PowerType.ComboPoints
 
 local cpr = LibStub("AceAddon-3.0"):GetAddon("ComboPointsRedux")
 local modName = "Combo Points"
@@ -43,7 +43,7 @@ function mod:OnInitialize()
 	end
 	self.Count = UnitPower("player", SPELL_POWER_COMBO_POINTS)
 	self.displayName = COMBAT_TEXT_SHOW_COMBO_POINTS_TEXT
-	self.events = { ["UNIT_POWER"] = "Update", ["SPELLS_CHANGED"] = "UpdateMaxPoints", ["PLAYER_SPECIALIZATION_CHANGED"] = "UpdateMaxPoints", ["PLAYER_LOGIN"] = "UpdateMaxPoints" }
+	self.events = { ["UNIT_POWER_UPDATE"] = "Update", ["SPELLS_CHANGED"] = "UpdateMaxPoints", ["PLAYER_SPECIALIZATION_CHANGED"] = "UpdateMaxPoints", ["PLAYER_LOGIN"] = "UpdateMaxPoints" }
 end
 
 function mod:OnModuleEnable()
