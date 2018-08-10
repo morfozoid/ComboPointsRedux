@@ -1,3 +1,6 @@
+Version 5.0.1
+    - Remove Festering Wounds module, BfA API changes require a complete re-write of the module
+
 Version 5.0.0
     - Updates for World of Warcraft API changes for the BFA 8.0 patch
         - Updates to use Enum.PowerType rather than old Spell Power constants
