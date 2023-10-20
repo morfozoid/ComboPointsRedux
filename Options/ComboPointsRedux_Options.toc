@@ -1,4 +1,4 @@
-Update TOC for Dragonfligth
+## Interface: 100107
 ## Title: ComboPointsRedux [|cffeda55fOptions|r]
 ## Notes: LoD Options for ComboPointsRedux.
 ## LoadOnDemand: 1
