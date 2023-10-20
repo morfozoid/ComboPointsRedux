@@ -1,9 +1,9 @@
 --[[
 Author: Starinnia
 CPR is a combo points display addon based on Funkydude's BasicComboPoints
-Last File Hash: @file-abbreviated-hash@
-Last File Date: @file-date-iso@
-Project Version: @project-version@
+Last File Hash: f0e67f0
+Last File Date: 2017-02-01T19:49:55Z
+Project Version: 5.0.2
 contact: codemaster2010 AT gmail DOT com
 
 Copyright (c) 2007-2017 Michael J. Murray aka Lyte of Lothar(US)
@@ -521,7 +521,7 @@ end
 local bg = {bgFile = "Interface\\Tooltips\\UI-Tooltip-Background"}
 function ComboPointsRedux:MakeTextFrame(moduleName)
 	local frameName = string.upper(moduleName:gsub("%s", ""))
-	local f = CreateFrame("FRAME", "CPR_"..frameName.."_TEXT", UIParent)
+	local f = CreateFrame("FRAME", "CPR_"..frameName.."_TEXT", UIParent, "BackdropTemplate")
 	f.moduleName = moduleName
 	f.moduleType = "text"
 	
@@ -583,7 +583,7 @@ end
 
 function ComboPointsRedux:MakeGraphicsFrame(moduleName, num, count)
 	local frameName = string.upper(moduleName:gsub("%s", ""))
-	local g = CreateFrame("FRAME", "CPR_"..frameName.."_GRAPHICS", UIParent)
+	local g = CreateFrame("FRAME", "CPR_"..frameName.."_GRAPHICS", UIParent, "BackdropTemplate")
 	g.moduleName = moduleName
 	g.moduleType = "graphics"
 	
@@ -624,7 +624,7 @@ function ComboPointsRedux:MakeGraphicsFrame(moduleName, num, count)
 	
 	g.points = {}
 	for i = 1, 10 do
-		g.points[i] = CreateFrame("FRAME", nil, g)
+		g.points[i] = CreateFrame("FRAME", nil, g, "BackdropTemplate")
 		g.points[i].icon = g.points[i]:CreateTexture(nil, "OVERLAY")
 		g.points[i].icon:SetAllPoints(g.points[i])
 		g.points[i].icon:SetTexture(basepath..db.icon)
@@ -681,7 +681,7 @@ function ComboPointsRedux:CreateFlashFrame()
 	
 	--thanks to BigWigs for the flasher code
 	--prolly same as what is used in Omen as well
-	local flasher = CreateFrame("Frame", "COMBOPOINTSREDUX_FLASHFRAME", UIParent)
+	local flasher = CreateFrame("Frame", "COMBOPOINTSREDUX_FLASHFRAME", UIParent, "BackdropTemplate")
 	flasher:SetFrameStrata("BACKGROUND")
 	flasher:SetBackdrop({bgFile = [[Interface\Tooltips\UI-Tooltip-Background]],})
 	flasher:SetAllPoints(UIParent)
