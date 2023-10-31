@@ -1,4 +1,4 @@
-## Interface: 80100
+## Interface: 100107
 ## Title: ComboPointsRedux [|cffeda55fOptions|r]
 ## Notes: LoD Options for ComboPointsRedux.
 ## LoadOnDemand: 1
