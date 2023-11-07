@@ -1,3 +1,10 @@
+Version 5.0.3.2
+    - Fixed flasher code.
+    - Fixed maximum points detection
+
+Version 5.0.3.1
+    - Fixed the issue "attempt to call method 'SetBackdrop' (a nil value)"
+
 Version 5.0.1
     - Remove Festering Wounds module, BfA API changes require a complete re-write of the module
 
