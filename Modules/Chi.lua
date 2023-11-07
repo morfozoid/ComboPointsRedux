@@ -21,15 +21,7 @@ local modName = "Chi"
 local mod = cpr:NewModule(modName)
 
 function mod:OnInitialize()
-	if GetSpecialization() == 3 then
-		if IsPlayerSpell(115396) then
-			self.MAX_POINTS = 6
-		else
-			self.MAX_POINTS = 5
-		end
-	else
-		self.MAX_POINTS = 0
-	end
+	self.MAX_POINTS = UnitPowerMax("player",Enum.PowerType.Chi)
 	self.Count = UnitPower("player", SPELL_POWER_CHI)
 	self.displayName = CHI_POWER
 	self.abbrev = "Chi"
@@ -83,13 +75,7 @@ function mod:UpdateMaxPoints()
 	local a, a2 = cpr:GetAlphas(modName)
 	
 	if GetSpecialization() == 3 then
-		if IsPlayerSpell(115396) then
-			self.MAX_POINTS = 6
-		else
-			self.MAX_POINTS = 5
-		end
-	else
-		self.MAX_POINTS = 0
+		self.MAX_POINTS = UnitPowerMax("player",Enum.PowerType.Chi)
 	end
 	if self.graphics then
 		for i = 1, 8 do

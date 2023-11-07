@@ -21,7 +21,7 @@ local modName = "Soul Shards"
 local mod = cpr:NewModule(modName)
 
 function mod:OnInitialize()
-	self.MAX_POINTS = 5
+	self.MAX_POINTS = UnitPowerMax("player",Enum.PowerType.SoulShards)
 	self.Count = UnitPower("player", SPELL_POWER_SOUL_SHARDS)
 	self.displayName = SOUL_SHARDS_POWER
 	self.abbrev = "SS"
