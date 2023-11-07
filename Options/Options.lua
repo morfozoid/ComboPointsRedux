@@ -249,15 +249,6 @@ for name, module in core:IterateModules() do
                         type = 'description',
                         name = '- Point height and width are calculated from the overall frame size (then multiplied by Scale) \n    - Example:\n    - You want 20x20 square icons and 5 pixels of spacing between them.\n    - Your class has six points.\n    - Set Height to 20 and Width to 150\n    - 150 = (20 * 6) + (5 * 6)\n'
                     },
-					oneColor = {
-						type = 'color',
-						name = format(L["%d |4Point:Points;"], 0),
-						desc = format(L["Set the color to be used when you have %d |4point:points;."], 0),
-						arg = 0,
-						get = "Get",
-						set = "Set",
-						order = 1,
-					},
 					iconStyle = {
 						type = "select",
 						name = L["Icon"],

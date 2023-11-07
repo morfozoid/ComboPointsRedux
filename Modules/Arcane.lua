@@ -23,11 +23,7 @@ local buff = GetSpellInfo(36032)
 
 function mod:OnInitialize()
 	self.abbrev = "AC"
-	if GetSpecialization() == 1 then
-		self.MAX_POINTS = 4
-	else
-		self.MAX_POINTS = 0
-	end
+	self.MAX_POINTS = UnitPowerMax("player",Enum.PowerType.ArcaneCharges)
 	self.Count = UnitPower("player", SPELL_POWER_ARCANE_CHARGES)
 	self.displayName = buff
 	self.events = { ["UNIT_POWER_UPDATE"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update", ["PLAYER_SPECIALIZATION_CHANGED"] = "UpdateMaxPoints", ["PLAYER_LOGIN"] = "UpdateMaxPoints" }
@@ -77,12 +73,7 @@ end
 function mod:UpdateMaxPoints()
 	self.Count = UnitPower("player", SPELL_POWER_ARCANE_CHARGES)
 	local a, a2 = cpr:GetAlphas(modName)
-	
-	if GetSpecialization() == 1 then
-		self.MAX_POINTS = 4
-	else
-		self.MAX_POINTS = 0
-	end
+	self.MAX_POINTS = UnitPowerMax("player",Enum.PowerType.ArcaneCharges)
 	if self.graphics then
 		for i = 1, 8 do
 			self.graphics.points[i]:Hide()

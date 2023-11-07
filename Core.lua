@@ -118,6 +118,8 @@ function ComboPointsRedux:OnInitialize()
 					colors = {
 						['**'] = {1, 0.9, 0},
 						[5] = {1, 0, 0},
+						[6] = {1, 0, 0},
+						[7] = {1, 0, 0},
 					},
 					graphicsAlpha = 1,
 					spacing = 5,
@@ -700,7 +702,7 @@ function ComboPointsRedux:CreateFlashFrame()
 		if elapsed > 0.2 then
 			alpha = 0.4 - alpha
 		end
-		frame:SetAlpha(alpha * 5)
+		frame:SetAlpha(alpha)
 		frame.elapsed = elapsed
 	end)
 	flasher:Hide()

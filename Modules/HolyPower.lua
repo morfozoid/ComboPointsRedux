@@ -21,11 +21,7 @@ local modName = "Holy Power"
 local mod = cpr:NewModule(modName)
 
 function mod:OnInitialize()
-	if GetSpecialization() == 3 then
-		self.MAX_POINTS = 5
-	else
-		self.MAX_POINTS = 0
-	end
+	self.MAX_POINTS = UnitPowerMax("player",Enum.PowerType.HolyPower)
 	self.Count = UnitPower("player", SPELL_POWER_HOLY_POWER)
 	self.displayName = HOLY_POWER
 	self.abbrev = "HP"
@@ -77,11 +73,7 @@ function mod:UpdateMaxPoints()
 	self.Count = UnitPower("player", SPELL_POWER_HOLY_POWER)
 	local a, a2 = cpr:GetAlphas(modName)
 	
-	if GetSpecialization() == 3 then
-		self.MAX_POINTS = 5
-	else
-		self.MAX_POINTS = 0
-	end
+	self.MAX_POINTS = UnitPowerMax("player",Enum.PowerType.HolyPower)
 	if self.graphics then
 		for i = 1, 8 do
 			self.graphics.points[i]:Hide()

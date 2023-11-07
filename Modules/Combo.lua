@@ -22,25 +22,7 @@ local mod = cpr:NewModule(modName)
 
 function mod:OnInitialize()
 	self.abbrev = "CP"
-	if select(3,UnitClass("player")) == 4 then
-		if IsPlayerSpell(193531) then
-			self.MAX_POINTS = 6
-		elseif IsPlayerSpell(114015) then
-			self.MAX_POINTS = 10
-		elseif IsPlayerSpell(14983) then
-			self.MAX_POINTS = 5
-		else
-			self.MAX_POINTS = 5
-		end
-	elseif select(3,UnitClass("player")) == 11 then
-		if IsPlayerSpell(202157) or IsPlayerSpell(197490) or IsPlayerSpell(202155) or GetSpecialization() == 2 then
-			self.MAX_POINTS = 5
-		else
-			self.MAX_POINTS = 0
-		end
-	else
-		self.MAX_POINTS = 0
-	end
+	self.MAX_POINTS = UnitPowerMax("player",Enum.PowerType.ComboPoints)
 	self.Count = UnitPower("player", SPELL_POWER_COMBO_POINTS)
 	self.displayName = COMBAT_TEXT_SHOW_COMBO_POINTS_TEXT
 	self.events = { ["UNIT_POWER_UPDATE"] = "Update", ["SPELLS_CHANGED"] = "UpdateMaxPoints", ["PLAYER_SPECIALIZATION_CHANGED"] = "UpdateMaxPoints", ["PLAYER_LOGIN"] = "UpdateMaxPoints" }
@@ -93,28 +75,7 @@ end
 function mod:UpdateMaxPoints()
 	self.Count = UnitPower("player", SPELL_POWER_COMBO_POINTS)
 	local a, a2 = cpr:GetAlphas(modName)
-	
-	if select(3,UnitClass("player")) == 4 then
-		if IsPlayerSpell(193531) then
-			self.MAX_POINTS = 6
-		elseif IsPlayerSpell(114015) then
-			self.MAX_POINTS = 10
-		elseif IsPlayerSpell(14983) then
-			self.MAX_POINTS = 5
-		else
-			self.MAX_POINTS = 5
-		end
-	elseif select(3,UnitClass("player")) == 11 then
-		if IsPlayerSpell(202157) or IsPlayerSpell(197490) or IsPlayerSpell(202155) then
-			self.MAX_POINTS = 5
-		elseif GetSpecialization() == 2 then
-			self.MAX_POINTS = 5
-		else
-			self.MAX_POINTS = 0
-		end
-	else
-		self.MAX_POINTS = 0
-	end	
+	self.MAX_POINTS = UnitPowerMax("player",Enum.PowerType.ComboPoints)
 	if self.graphics then
 		for i = 1, self.MAX_POINTS do
 			self.graphics.points[i]:Hide()
