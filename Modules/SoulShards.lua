@@ -2,9 +2,9 @@
 Author: Starinnia
 CPR is a combo points display addon based on Funkydude's BasicComboPoints
 SoulShards.lua - A module for tracking Soul Shards
-Last File Hash: @file-abbreviated-hash@
-Last File Date: @file-date-iso@
-Project Version: @project-version@
+Last File Hash: 7cf8e1e
+Last File Date: 2023-11-07T7:19:35Z
+Project Version: 5.0.3.2
 contact: codemaster2010 AT gmail DOT com
 
 Copyright (c) 2007-2017 Michael J. Murray aka Lyte of Lothar(US)
@@ -21,11 +21,11 @@ local modName = "Soul Shards"
 local mod = cpr:NewModule(modName)
 
 function mod:OnInitialize()
-	self.MAX_POINTS = UnitPowerMax("player",Enum.PowerType.SoulShards)
+	self.MAX_POINTS = UnitPowerMax("player",SPELL_POWER_SOUL_SHARDS)
 	self.Count = UnitPower("player", SPELL_POWER_SOUL_SHARDS)
 	self.displayName = SOUL_SHARDS_POWER
 	self.abbrev = "SS"
-	self.events = { ["UNIT_POWER_UPDATE"] = "Update", ["UNIT_DISPLAYPOWER"] = "Update", ["PLAYER_LOGIN"] = "Update" }
+	self.events = { ["UNIT_POWER_UPDATE"] = "Update", ["SPELLS_CHANGED"] = "UpdateMaxPoints", ["UNIT_DISPLAYPOWER"] = "Update", ["PLAYER_SPECIALIZATION_CHANGED"] = "UpdateMaxPoints", ["PLAYER_LOGIN"] = "UpdateMaxPoints", ["PLAYER_ENTERING_WORLD"] = "UpdateMaxPoints" }
 end
 
 local oldCount = 0
@@ -68,3 +68,27 @@ function mod:Update()
     
     if self.text then self.text:SetNumPoints(cpr:GetTextValue(modName, self.Count)) end
 end
+
+function mod:UpdateMaxPoints()
+	self.Count = UnitPower("player", SPELL_POWER_SOUL_SHARDS)
+	local a, a2 = cpr:GetAlphas(modName)
+	
+	self.MAX_POINTS = UnitPowerMax("player",SPELL_POWER_SOUL_SHARDS)
+	if self.graphics then
+		for i = 1, 8 do
+			self.graphics.points[i]:Hide()
+			self.graphics.points[i]:SetAlpha(a2)
+		end
+		if self.MAX_POINTS > 0 then
+			for i = 1, self.MAX_POINTS do
+				self.graphics.points[i]:Show()
+			end
+			if self.Count > 0 then
+				for i = 1, self.Count do
+					self.graphics.points[i]:SetAlpha(a)
+				end
+			end
+		end
+	end
+	cpr:UpdateSettings(modName)
+end							  

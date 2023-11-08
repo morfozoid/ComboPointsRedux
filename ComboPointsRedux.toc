@@ -1,4 +1,4 @@
-## Interface: 100107
+## Interface: 100200
 ## Title: ComboPointsRedux
 ## Notes: Numerical and graphical display of Combo Points and similar buffs/debuffs. Also tracks Holy Power and Soul Shards.
 ## Author: Starinnia

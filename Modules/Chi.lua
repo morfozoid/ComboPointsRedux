@@ -2,9 +2,9 @@
 Author: Starinnia
 CPR is a combo points display addon based on Funkydude's BasicComboPoints
 Chi.lua - A module for tracking Chi (Light Force)
-Last File Hash: @file-abbreviated-hash@
-Last File Date: @file-date-iso@
-Project Version: @project-version@
+Last File Hash: 7cf8e1e
+Last File Date: 2023-11-07T7:19:35Z
+Project Version: 5.0.3.2
 contact: codemaster2010 AT gmail DOT com
 
 Copyright (c) 2007-2017 Michael J. Murray aka Lyte of Lothar(US)
@@ -21,7 +21,7 @@ local modName = "Chi"
 local mod = cpr:NewModule(modName)
 
 function mod:OnInitialize()
-	self.MAX_POINTS = UnitPowerMax("player",Enum.PowerType.Chi)
+	self.MAX_POINTS = UnitPowerMax("player",SPELL_POWER_CHI)
 	self.Count = UnitPower("player", SPELL_POWER_CHI)
 	self.displayName = CHI_POWER
 	self.abbrev = "Chi"
@@ -75,7 +75,7 @@ function mod:UpdateMaxPoints()
 	local a, a2 = cpr:GetAlphas(modName)
 	
 	if GetSpecialization() == 3 then
-		self.MAX_POINTS = UnitPowerMax("player",Enum.PowerType.Chi)
+		self.MAX_POINTS = UnitPowerMax("player",SPELL_POWER_CHI)
 	end
 	if self.graphics then
 		for i = 1, 8 do
