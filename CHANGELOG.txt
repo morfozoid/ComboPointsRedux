@@ -1,3 +1,7 @@
+Version 5.0.3.3
+    - Update TOC for 10.2
+    - More fixes for max points detection
+
 Version 5.0.3.2
     - Fixed flasher code.
     - Fixed maximum points detection
